@@ -1,0 +1,7 @@
+{
+  "name": "meLembre",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "meLembre",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
