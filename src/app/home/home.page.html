@@ -1,20 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>
+        Blank
+      </ion-title>
     </ion-toolbar>
   </ion-header>
+  <div style="padding: 1em;">
+    <button mat-stroked-button color="primary" style="width: 100%;" (click)="navigate('add-document')">Adicionar
+      documento</button>
+  </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+
+
+  <!--
+Documento Inserido -->
+  <div style="padding: 1em;">
+
+    <mat-accordion *ngFor="let item of documentoArray[0]">
+      <mat-expansion-panel style="border-left: 6px solid #000898;">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.nomeDocumento}}
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <mat-card style="padding: 1em ;border-right: 6px solid #00981e;">
+          <ion-item> Validade: {{item.validade}}
+          </ion-item>
+          <button mat-stroked-button color="danger" style="width: 100%;"
+            (click)="deleteDoc(item.nomeDocumento)">Adicionar
+            excluir documento</button>
+        </mat-card>
+      </mat-expansion-panel>
+
+    </mat-accordion>
   </div>
 </ion-content>
