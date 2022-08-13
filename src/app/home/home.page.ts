@@ -1,12 +1,18 @@
 import { DocumentoStorage } from './model/document';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+
 import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@awesome-cordova-plugins/native-page-transitions/ngx';
-import { Storage } from '@capacitor/storage';
-import { NavController } from '@ionic/angular';
+  IonList,
+  NavController,
+  Platform,
+  ToastController,
+} from '@ionic/angular';
+import { Item, StorageService } from '../shared/services/storage.service';
+import { Storage } from '@ionic/storage';
+import { CustomModalPage } from '../shared/custom-modal/custom-modal.page';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -14,53 +20,104 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  documentoArray: Array<DocumentoStorage> = [];
+  items: Item[] = [];
+
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  newItem: Item = <Item>{};
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  @ViewChild('mylist', { static: false }) mylist: IonList;
 
   constructor(
-    private navCtrl: NavController,
-    public route: ActivatedRoute,
-    private router: Router
-  ) {
-    route.params.subscribe(async (val) => {
-      this.searchDoc();
-    });
-  }
-  ngOnInit(): void {}
-  async searchDoc() {
-    const store = await this.getStorage('father');
-    const data = JSON.parse(store.value);
-    this.documentoArray.push(data);
-    console.log(this.documentoArray);
-  }
-  async getStorage(storageKey: string) {
-    return await Storage.get({
-      key: storageKey,
-    });
-  }
-  async deleteDoc(value) {
-    await Storage.remove({ key: value });
-    this.searchDoc();
-  }
-  // ionViewWillLeave() {
-  //   const options: NativeTransitionOptions = {
-  //     direction: 'up',
-  //     duration: 500,
-  //     slowdownfactor: 3,
-  //     slidePixels: 20,
-  //     iosdelay: 100,
-  //     androiddelay: 150,
-  //     fixedPixelsTop: 0,
-  //     fixedPixelsBottom: 60,
-  //   };
+    private storageService: StorageService,
+    private plt: Platform,
+    public dialog: MatDialog,
 
-  //   this.nativePageTransitions.slide(options).then(onSuccess).catch(onError);
-  // }
+    private router: Router,
+    private storage: Storage,
+    private toastController: ToastController
+  ) {
+    this.plt.ready().then(() => {
+      this.loadItems();
+    });
+  }
+  async ngOnInit(): Promise<void> {
+    await this.storage.create();
+  }
+  // CREATE
+  addItem() {
+    this.newItem.modified = Date.now();
+    this.newItem.id = Date.now();
+    if (this.items.length === 10) {
+      this.openMsgModal(
+        'error',
+        'Não é possível inserir mais que 10 itens',
+        '...'
+      );
+    } else {
+      if (
+        this.newItem.nomeDocumento === undefined ||
+        this.newItem.value === undefined
+      ) {
+        this.openMsgModal('error', 'Insira corretamente os dados', '...');
+      } else {
+        this.storageService.addItem(this.newItem).then((item) => {
+          // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+          this.newItem = <Item>{};
+          this.showToast('Item added!');
+          this.loadItems(); // Or add it to the array directly
+        });
+      }
+    }
+  }
   navigate(local) {
     this.router.navigate([local]);
   }
-  // // example of adding a transition when pushing a new page
-  // openPage(page: any) {
-  //   this.nativePageTransitions.slide(options);
-  //   this.navCtrl.push(page);
-  // }
+  // READ
+  loadItems() {
+    this.storageService.getItems().then((items) => {
+      this.items = items;
+    });
+  }
+  alert(): void {
+    this.openMsgModal('error', 'Infelizmente você não tem permissões', '...');
+  }
+  // UPDATE
+  updateItem(item: Item) {
+    item.nomeDocumento = `UPDATED: ${item.nomeDocumento}`;
+    item.modified = Date.now();
+
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    this.storageService.updateItem(item).then((item: any) => {
+      this.showToast('Item updated!');
+      this.mylist.closeSlidingItems(); // Fix or sliding is stuck afterwards
+      this.loadItems(); // Or update it inside the array directly
+    });
+  }
+
+  // DELETE
+  deleteItem(item: Item) {
+    this.storageService.deleteItem(item.id).then(() => {
+      this.showToast('Item removed!');
+      this.mylist.closeSlidingItems(); // Fix or sliding is stuck afterwards
+      this.loadItems(); // Or splice it from the array directly
+    });
+  }
+
+  // Helper
+  async showToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+    });
+    toast.present();
+  }
+  openMsgModal(type, title, text): void {
+    const dialogRef = this.dialog.open(CustomModalPage, {
+      width: '80%',
+      panelClass: 'custom-modalbox',
+      // eslint-disable-next-line object-shorthand
+      data: { type: type, title: title, text: text },
+    });
+  }
 }

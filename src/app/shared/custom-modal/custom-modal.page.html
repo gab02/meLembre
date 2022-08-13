@@ -1,0 +1,22 @@
+<div>
+  <ion-card class="main-border">
+    <ion-card-header color="primary" class="text-center"
+      [ngClass]="{'ion-color-primary': type === 'success' || type === null, 'ion-color-warning': type === 'warning' || type === null, 'ion-color-danger': type === 'error'}">
+      <i class="fas fa-3x"
+        [ngClass]="{'fa-check-circle': type === 'success' || type === null, 'fa-times-circle': type === 'error', 'fa-exclamation-circle': type === 'warning' }"></i>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="pt-4 text-center">
+        <h2 class="text-large"><strong>{{title}}</strong></h2>
+        <p>
+          {{text}}
+        </p>
+      </div>
+      <hr>
+      <div class="text-center">
+        <div class="text-large" (click)="close()">Ok</div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

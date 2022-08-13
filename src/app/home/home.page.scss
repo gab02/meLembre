@@ -12,7 +12,12 @@
   font-size: 20px;
   line-height: 26px;
 }
-
+.flex-container{
+ display: flex;
+ flex-wrap: wrap;
+ text-align: center;
+ justify-content: center;
+}
 #container p {
   font-size: 16px;
   line-height: 22px;

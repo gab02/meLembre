@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddDocumentPageRoutingModule } from './add-document/add-document-routing.module';
+import { Storage } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+
     AppRoutingModule,
     BrowserAnimationsModule,
     HomePageModule,

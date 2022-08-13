@@ -1,14 +1,14 @@
 <ion-content [fullscreen]="true">
-  <ion-header [translucent]="true">
-    <ion-toolbar>
+  <ion-header>
+    <ion-toolbar style="background-color: #fff;">
       <ion-title>
-        Blank
+        Adicionar documentos para lembrete
       </ion-title>
     </ion-toolbar>
   </ion-header>
   <div style="padding: 1em;">
-    <button mat-stroked-button color="primary" style="width: 100%;" (click)="navigate('add-document')">Adicionar
-      documento</button>
+    <!-- <button mat-stroked-button color="primary" style="width: 100%;" (click)="navigate('add-document')">Adicionar
+      documento</button> -->
   </div>
 
 
@@ -17,8 +17,79 @@
   <!--
 Documento Inserido -->
   <div style="padding: 1em;">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Documento</mat-label>
+      <input [(ngModel)]="newItem.nomeDocumento" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Selecione a data de vencimento</mat-label>
+      <input matInput [(ngModel)]="newItem.value" [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br><br>
 
-    <mat-accordion *ngFor="let item of documentoArray[0]">
+
+    <button mat-raised-button color="primary" style="width: 100%;" (click)="addItem()">Adicionar
+      documento</button>
+    <!-- <ion-button expand=" full" (click)="addItem()">Add Item!</ion-button> -->
+
+    <ion-list #mylist>
+      <BR>
+      <h3 class="flex-container">
+        MEUS DOCUMENTOS
+      </h3>
+
+
+      <mat-accordion *ngFor="let item of items">
+        <mat-expansion-panel style="border-left: 6px solid #000898;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.nomeDocumento}}
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <mat-card style="padding: 1em ;border-right: 6px solid #000898;">
+            <ion-item> Validade: {{item.value | date:'short'}}
+            </ion-item>
+            <ion-row>
+              <ion-col size="6"></ion-col>
+              <ion-col size="6"><button mat-raised-button color="warn" style="width: 100%;" (click)="deleteItem(item)">
+                  EXCLUIR</button></ion-col>
+            </ion-row>
+
+          </mat-card>
+        </mat-expansion-panel>
+        <br>
+
+      </mat-accordion>
+
+
+
+
+
+
+      <!-- <ion-item-sliding *ngFor="let item of items">
+
+        <ion-item>
+          <ion-label text-wrap>
+            <h3>{{ item.nomeDocumento }}</h3>
+            <ion-text color="secondary">
+              <p>{{ item.value }}</p>
+            </ion-text>
+            <p>{{ item.modified | date:'short'}}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="secondary" (click)="updateItem(item)">Update</ion-item-option>
+          <ion-item-option color="danger" (click)="deleteItem(item)">Delete</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding> -->
+
+    </ion-list>
+    <!-- <mat-accordion *ngFor="let item of documentoArray">
       <mat-expansion-panel style="border-left: 6px solid #000898;">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -29,12 +100,14 @@ Documento Inserido -->
         <mat-card style="padding: 1em ;border-right: 6px solid #00981e;">
           <ion-item> Validade: {{item.validade}}
           </ion-item>
-          <button mat-stroked-button color="danger" style="width: 100%;"
-            (click)="deleteDoc(item.nomeDocumento)">Adicionar
+          <button mat-stroked-button color="danger" style="width: 100%;" (click)="deleteDoc(items.nomeDocumento)">
             excluir documento</button>
         </mat-card>
       </mat-expansion-panel>
 
-    </mat-accordion>
+    </mat-accordion> -->
+    <br><br>
+    <br>
+
   </div>
 </ion-content>
