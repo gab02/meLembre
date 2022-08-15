@@ -9,7 +9,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+        "resources": "cordova-res ios && cordova-res android --icon-foreground-trim && node scripts/resources.js"
+
   },
   "private": true,
   "dependencies": {
@@ -24,6 +26,7 @@
     "@angular/router": "^14.0.0",
     "@awesome-cordova-plugins/core": "^5.44.0",
     "@awesome-cordova-plugins/native-page-transitions": "^5.44.0",
+    "@capacitor/android": "4.0.1",
     "@capacitor/app": "4.0.1",
     "@capacitor/core": "4.0.1",
     "@capacitor/haptics": "4.0.1",
@@ -33,6 +36,7 @@
     "@ionic/angular": "^6.1.9",
     "@ionic/storage": "^3.0.6",
     "com.telerik.plugins.nativepagetransitions": "^0.7.0",
+    "cordova-res": "^0.15.4",
     "cordova-sqlite-storage": "^6.0.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.4.26",

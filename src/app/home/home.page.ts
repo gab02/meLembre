@@ -48,25 +48,35 @@ export class HomePage implements OnInit {
   addItem() {
     this.newItem.modified = Date.now();
     this.newItem.id = Date.now();
-    if (this.items.length === 10) {
-      this.openMsgModal(
-        'error',
-        'Não é possível inserir mais que 10 itens',
-        '...'
-      );
+
+    if (this.items === null) {
+      this.storageService.addItem(this.newItem).then((item) => {
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+        this.newItem = <Item>{};
+        this.showToast('Item added!');
+        this.loadItems(); // Or add it to the array directly
+      });
     } else {
-      if (
-        this.newItem.nomeDocumento === undefined ||
-        this.newItem.value === undefined
-      ) {
-        this.openMsgModal('error', 'Insira corretamente os dados', '...');
+      if (this.items.length === 10) {
+        this.openMsgModal(
+          'error',
+          'Não é possível inserir mais que 10 itens',
+          '...'
+        );
       } else {
-        this.storageService.addItem(this.newItem).then((item) => {
-          // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-          this.newItem = <Item>{};
-          this.showToast('Item added!');
-          this.loadItems(); // Or add it to the array directly
-        });
+        if (
+          this.newItem.nomeDocumento === undefined ||
+          this.newItem.value === undefined
+        ) {
+          this.openMsgModal('error', 'Insira corretamente os dados', '...');
+        } else {
+          this.storageService.addItem(this.newItem).then((item) => {
+            // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+            this.newItem = <Item>{};
+            this.showToast('Item added!');
+            this.loadItems(); // Or add it to the array directly
+          });
+        }
       }
     }
   }
