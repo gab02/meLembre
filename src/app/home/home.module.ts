@@ -3,7 +3,7 @@ import { MatInputModule } from '@angular/material/input';
 import { StorageService } from './../shared/services/storage.service';
 import { MatCardModule } from '@angular/material/card';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
@@ -36,7 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
     HomePageRoutingModule,
   ],
   declarations: [HomePage],
-  providers: [StorageService, Storage],
+  providers: [StorageService, Storage, DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePageModule {}

@@ -2,5 +2,13 @@
 	"appId": "io.ionic.starter",
 	"appName": "meLembre",
 	"webDir": "www",
-	"bundledWebRuntime": false
-}
+	"bundledWebRuntime": false,
+"plugins": {
+  "LocalNotifications": {
+    "smallIcon": "ic_stat_ionic_logo",
+    "iconColor": "#3E7DFF",
+    "sound": "fanfare.wav"
+  }
+}}
+
+

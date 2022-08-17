@@ -10,8 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-        "resources": "cordova-res ios && cordova-res android --icon-foreground-trim && node scripts/resources.js"
-
+    "resources": "cordova-res ios && cordova-res android --icon-foreground-trim && node scripts/resources.js"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +30,7 @@
     "@capacitor/core": "4.0.1",
     "@capacitor/haptics": "4.0.1",
     "@capacitor/keyboard": "4.0.1",
+    "@capacitor/local-notifications": "^4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@capacitor/storage": "^1.2.5",
     "@ionic/angular": "^6.1.9",
