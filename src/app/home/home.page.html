@@ -14,19 +14,18 @@
 
 
 
-  <!--
-Documento Inserido -->
+  <!-- Documento Inserido -->
   <div style="padding: 1em;">
     <ion-row>
       <ion-col size="6">
         <mat-form-field style="width: 100%;">
-          <mat-label>Documento</mat-label>
+          <mat-label>Tipo de Documento</mat-label>
           <input [(ngModel)]="newItem.nomeDocumento" matInput>
         </mat-form-field>
       </ion-col>
       <ion-col size="6">
         <mat-form-field style="width: 100%;">
-          <mat-label>Nome</mat-label>
+          <mat-label>Apelido:</mat-label>
           <input [(ngModel)]="newItem.nome" matInput>
         </mat-form-field>
       </ion-col>
@@ -57,12 +56,12 @@ Documento Inserido -->
       <mat-expansion-panel style="border-left: 6px solid #00984A;">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{item.nomeDocumento}}
+            {{item.nome}}
           </mat-panel-title>
 
         </mat-expansion-panel-header>
         <mat-card style="padding: 1em ;border-right: 6px solid #00984A;">
-          <h3> <b>Nome:</b> {{item.nome}}
+          <h3> <b>Tipo Documento:</b> {{item.nomeDocumento}}
           </h3>
           <h3> <b>Validade:</b> {{item.value | date:'short'}}
           </h3>
