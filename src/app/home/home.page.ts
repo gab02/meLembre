@@ -23,6 +23,7 @@ import {
 } from '@capacitor/local-notifications';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -120,7 +121,7 @@ export class HomePage implements OnInit {
         this.loadItems(); // Or add it to the array directly
       });
     } else {
-      if (this.items.length === 10) {
+      if (this.items.length === 5) {
         this.openMsgModal(
           'error',
           'Não é possível inserir mais que 10 itens',
@@ -257,4 +258,5 @@ export class HomePage implements OnInit {
       data: { type: type, title: title, text: text },
     });
   }
+
 }
