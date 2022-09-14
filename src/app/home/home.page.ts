@@ -31,10 +31,9 @@ import { DatePipe } from '@angular/common';
 })
 export class HomePage implements OnInit {
   items: Item[] = [];
-
+  documentsList: any[] = [];
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newItem: Item = <Item>{};
-
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('mylist', { static: false }) mylist: IonList;
 
@@ -55,6 +54,16 @@ export class HomePage implements OnInit {
     });
   }
   async ngOnInit(): Promise<void> {
+    this.documentsList = [
+      { model: 'RG' },
+      { model: 'PASSAPORTE' },
+      { model: 'CNH' },
+      { model: 'CARTEIRA DE ESTUDANTE' },
+      { model: 'CONTRATO DE ALUGUEL' },
+      { model: 'CONTAS A VENCER' },
+      { model: 'IPTU' },
+      { model: 'IPVA' },
+    ];
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions

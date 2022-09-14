@@ -6,10 +6,10 @@
     <ion-title>
       ME LEMBRE! </ion-title>
   </ion-toolbar>
-
+  <!--
   <ion-button (click)="scheduleBasic()" expand="block" fill="clear">
     Schedule Basic
-  </ion-button>
+  </ion-button> -->
 
 
 
@@ -18,12 +18,17 @@
   <div style="padding: 1em;">
     <ion-row>
       <ion-col size="6">
-        <mat-form-field style="width: 100%;">
-          <mat-label>Tipo de Documento</mat-label>
-          <input [(ngModel)]="newItem.nomeDocumento" matInput>
-        </mat-form-field>
+
+        <ion-list>
+          <ion-item>
+            <ion-select [(ngModel)]="newItem.nomeDocumento" placeholder="gDocumento">
+              <ion-select-option *ngFor="let doc of documentsList" value="{{doc.model}}">{{doc.model}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
       </ion-col>
-      <ion-col size="6">
+      <ion-col size=" 6">
         <mat-form-field style="width: 100%;">
           <mat-label>Apelido:</mat-label>
           <input [(ngModel)]="newItem.nome" matInput>
