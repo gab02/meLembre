@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package br.melembre.software2you;
 
 import com.getcapacitor.BridgeActivity;
 
