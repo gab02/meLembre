@@ -1,7 +1,7 @@
 import { DocumentoStorage } from './model/document';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 import {
   AlertController,
@@ -260,12 +260,11 @@ export class HomePage implements OnInit {
     });
   }
   openMsgModal(type, title, text): void {
-    const dialogRef = this.dialog.open(CustomModalPage, {
-      width: '80%',
-      panelClass: 'custom-modalbox',
-      // eslint-disable-next-line object-shorthand
-      data: { type: type, title: title, text: text },
-    });
-  }
-
+     Swal.fire({
+       heightAuto: false,
+       title: title,
+       text: text,
+       icon: type
+     });
+}
 }
