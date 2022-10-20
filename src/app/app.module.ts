@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddDocumentPageRoutingModule } from './add-document/add-document-routing.module';
-import { Storage } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +23,8 @@ import { Storage } from '@ionic/storage';
     HomePageModule,
     HomePageRoutingModule,
     AddDocumentPageModule,
-    AddDocumentPageRoutingModule,
+    AddDocumentPageRoutingModule
+    
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
