@@ -1,3 +1,4 @@
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 import { CustomModalPageModule } from './../shared/custom-modal/custom-modal.module';
 import { MatInputModule } from '@angular/material/input';
 import { StorageService } from './../shared/services/storage.service';
@@ -36,7 +37,7 @@ import { MatIconModule } from '@angular/material/icon';
     HomePageRoutingModule,
   ],
   declarations: [HomePage],
-  providers: [StorageService, Storage, DatePipe],
+  providers: [StorageService, Storage, DatePipe, LocalNotifications],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePageModule {}
