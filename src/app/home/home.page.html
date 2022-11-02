@@ -6,13 +6,6 @@
     <ion-title>
       ME LEMBRE! </ion-title>
   </ion-toolbar>
-
-  <ion-button (click)="scheduleBasic()" expand="block" fill="clear">
-    Schedule Basic
-  </ion-button>
-
-
-
   <!-- Documento Inserido -->
   <div style="padding: 1em;">
     <ion-row>
@@ -50,7 +43,7 @@
     <div class="flex-container">
       <button mat-raised-button
         style="background-color: #00984A; color: #fff; width: 80%; height: 50px; border-radius: 10px;"
-        (click)="addItem()">ADICIONAR DOCUMENTO</button>
+        (click)="addItem(newItem.value)">ADICIONAR DOCUMENTO</button>
     </div>
     <!-- <ion-button expand=" full" (click)="addItem()">Add Item!</ion-button> -->
 
