@@ -2,7 +2,12 @@ import { DocumentoStorage } from './model/document';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+import {
+  LocalNotifications,
+  ELocalNotificationTriggerUnit,
+  ILocalNotificationActionType,
+  ILocalNotification,
+} from '@ionic-native/local-notifications/ngx';
 
 import {
   AlertController,
@@ -69,15 +74,59 @@ export class HomePage implements OnInit {
     await this.storage.create();
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     // Make sure we are allowed to send notifications!
+    // await LocalNotifications.checkPermissions();
 
     // Register your custom action types
+    // LocalNotifications.registerActionTypes({
+    //   types: [
+    //     {
+    //       id: 'CHAT_MSG',
+    //       actions: [
+    //         {
+    //           id: 'view',
+    //           title: 'Open Chat',
+    //         },
+    //         {
+    //           id: 'remove',
+    //           title: 'Dismiss',
+    //           destructive: true,
+    //         },
+    //         {
+    //           id: 'respond',
+    //           title: 'Respond',
+    //           input: true,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // });
 
+    // // Received when notification is executed at the scheduled time
+    // LocalNotifications.addListener(
+    //   'localNotificationReceived',
+    //   (notification: LocalNotificationSchema) => {
+    //     this.presentAlert(
+    //       `Received: ${notification.title}`,
+    //       `Custom Data: ${JSON.stringify(notification.extra)}`
+    //     );
+    //   }
+    // );
 
-    // Received when notification is executed at the scheduled time
-
+    // // Received when a special action button is clicked or notification is tapped
+    // LocalNotifications.addListener(
+    //   'localNotificationActionPerformed',
+    //   (notification: ActionPerformed) => {
+    //     this.presentAlert(
+    //       `Performed: ${notification.actionId}`,
+    //       `Input value: ${notification.inputValue}`
+    //     );
+    //   }
+    // );
   }
   // CREATE
-  addItem() {
+  addItem(data) {
+
+    console.log(data);
     this.newItem.modified = Date.now();
     this.newItem.id = Date.now();
 
@@ -107,6 +156,7 @@ export class HomePage implements OnInit {
             // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
             this.newItem = <Item>{};
             this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
+            this.scheduleNotification(data);
             this.loadItems(); // Or add it to the array directly
           });
         }
@@ -180,21 +230,61 @@ export class HomePage implements OnInit {
     toast.present();
   }
 
-  async scheduleBasic() {
-this.localNotifications.schedule({
-  text: 'Delayed ILocalNotification',
-  // trigger: { every: { hour: this.hour, minute: this.minute } },
-  led: 'FF0000',
-  sound: null,
-});
+  scheduleNotification(data) {
+  this.instantNotify();
+console.log('||||||||||||||||||||||'+new Date(data + 5 * 1000));
+    // this.localNotifications.schedule({
+    //   id: 1,
+    //   title: 'Attention',
+    //   text: 'Simons Notification',
+    //   data: { mydata: 'My hidden message this is' },
+    //   trigger: { in: 5, unit: ELocalNotificationTriggerUnit.SECOND },
+    //   foreground: true, // Show the notification while app is open
+    // });
+    // Works as well!
+    this.localNotifications.schedule({
+      id: 2,
+      title: 'Seu Documento está prestes a vencer',
+      text: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+      data: { mydata: 'Confira logo!' },
+      trigger: { at: new Date(data + 5 * 1000) }
+    });
   }
-
-  openMsgModal(type, title, text): void {
-     Swal.fire({
-       heightAuto: false,
-       title: title,
-       text: text,
-       icon: type
+  instantNotify(){
+     this.localNotifications.schedule({
+       id: 1,
+       title: 'Iremos informar o vencimento do seu documento!',
+       text: 'Nós cuidaremos disto para você',
+       data: { mydata: 'Nós cuidaremos disto para você!' },
+       trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
      });
-}
+  }
+  // async scheduleAdvanced() {
+  //   await LocalNotifications.schedule({
+  //     notifications: [
+  //       {
+  //         title:
+  //           this.items.length[0].nome +
+  //           ' Seu documento irá vencer no dia ' +
+  //           this.items.length[0].value,
+  //         body: 'Venha conferir',
+  //         id: 2,
+  //         schedule: { at: new Date(Date.now() + 1000 * 3) },
+  //         sound: 'fanfare.wav',
+  //         smallIcon: 'ic_stat_ionic_logo', // Android only, overrides capacitor.config setting!
+  //         attachments: [
+  //           { id: 'face', url: 'res://public/assets/notif_image.jpg' },
+  //         ],
+  //       },
+  //     ],
+  //   });
+  // }
+  openMsgModal(type, title, text): void {
+    Swal.fire({
+      heightAuto: false,
+      title: title,
+      text: text,
+      icon: type,
+    });
+  }
 }

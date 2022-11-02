@@ -1,4 +1,4 @@
-import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+import { LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import { CustomModalPageModule } from './../shared/custom-modal/custom-modal.module';
 import { MatInputModule } from '@angular/material/input';
 import { StorageService } from './../shared/services/storage.service';
