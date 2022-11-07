@@ -37,6 +37,8 @@ import { DatePipe } from '@angular/common';
 export class HomePage implements OnInit {
   items: Item[] = [];
   documentsList: any[] = [];
+  notifyList: any[] = [];
+  visible = false;
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newItem: Item = <Item>{};
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -60,15 +62,91 @@ export class HomePage implements OnInit {
     });
   }
   async ngOnInit(): Promise<void> {
-    this.documentsList = [
-      { model: 'RG' },
-      { model: 'PASSAPORTE' },
-      { model: 'CNH' },
-      { model: 'CARTEIRA DE ESTUDANTE' },
-      { model: 'CONTRATO DE ALUGUEL' },
-      { model: 'CONTAS A VENCER' },
-      { model: 'IPTU' },
-      { model: 'IPVA' },
+    this.notifyList = [
+      {
+        model: 'DOCUMENTOS',
+        id: '1',
+        list: [
+          { model: 'RG' },
+          { model: 'PASSAPORTE' },
+          { model: 'CNH' },
+          { model: 'CARTEIRA DE ESTUDANTE' },
+          { model: 'CONTRATO DE ALUGUEL' },
+          { model: 'CONTAS A VENCER' },
+          { model: 'IPTU' },
+          { model: 'IPVA' },
+        ],
+      },
+      {
+        model: 'LEMBRETES',
+        id: '2',
+        list: [
+          { model: 'RG' },
+          { model: 'PASSAPORTE' },
+          { model: 'CNH' },
+          { model: 'CARTEIRA DE ESTUDANTE' },
+          { model: 'CONTRATO DE ALUGUEL' },
+          { model: 'CONTAS A VENCER' },
+          { model: 'IPTU' },
+          { model: 'IPVA' },
+        ],
+      },
+      {
+        model: 'BEBER AGUA',
+        id: '3',
+        list: [
+          { model: 'RG' },
+          { model: 'PASSAPORTE' },
+          { model: 'CNH' },
+          { model: 'CARTEIRA DE ESTUDANTE' },
+          { model: 'CONTRATO DE ALUGUEL' },
+          { model: 'CONTAS A VENCER' },
+          { model: 'IPTU' },
+          { model: 'IPVA' },
+        ],
+      },
+      {
+        model: 'CONSULTAS MÉDICAS',
+        id: '4',
+        list: [
+          { model: 'RG' },
+          { model: 'PASSAPORTE' },
+          { model: 'CNH' },
+          { model: 'CARTEIRA DE ESTUDANTE' },
+          { model: 'CONTRATO DE ALUGUEL' },
+          { model: 'CONTAS A VENCER' },
+          { model: 'IPTU' },
+          { model: 'IPVA' },
+        ],
+      },
+      {
+        model: 'AFAZERES DOMÉSTICOS',
+        id: '5',
+        list: [
+          { model: 'RG' },
+          { model: 'PASSAPORTE' },
+          { model: 'CNH' },
+          { model: 'CARTEIRA DE ESTUDANTE' },
+          { model: 'CONTRATO DE ALUGUEL' },
+          { model: 'CONTAS A VENCER' },
+          { model: 'IPTU' },
+          { model: 'IPVA' },
+        ],
+      },
+      {
+        model: 'ATIVIDADES DO TRABALHO',
+        id: '6',
+        list: [
+          { model: 'RG' },
+          { model: 'PASSAPORTE' },
+          { model: 'CNH' },
+          { model: 'CARTEIRA DE ESTUDANTE' },
+          { model: 'CONTRATO DE ALUGUEL' },
+          { model: 'CONTAS A VENCER' },
+          { model: 'IPTU' },
+          { model: 'IPVA' },
+        ],
+      },
     ];
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
@@ -123,9 +201,12 @@ export class HomePage implements OnInit {
     //   }
     // );
   }
+  populateType(data) {
+    console.log(data);
+
+  }
   // CREATE
   addItem(data) {
-
     console.log(data);
     this.newItem.modified = Date.now();
     this.newItem.id = Date.now();
@@ -231,8 +312,8 @@ export class HomePage implements OnInit {
   }
 
   scheduleNotification(data) {
-  this.instantNotify();
-console.log('||||||||||||||||||||||'+new Date(data + 5 * 1000));
+    this.instantNotify();
+    console.log('||||||||||||||||||||||' + new Date(data + 5 * 1000));
     // this.localNotifications.schedule({
     //   id: 1,
     //   title: 'Attention',
@@ -247,17 +328,17 @@ console.log('||||||||||||||||||||||'+new Date(data + 5 * 1000));
       title: 'Seu Documento está prestes a vencer',
       text: 'VOCÊ PEDIU, TE LEMBRAMOS!',
       data: { mydata: 'Confira logo!' },
-      trigger: { at: new Date(data + 5 * 1000) }
+      trigger: { at: new Date(data + 5 * 1000) },
     });
   }
-  instantNotify(){
-     this.localNotifications.schedule({
-       id: 1,
-       title: 'Iremos informar o vencimento do seu documento!',
-       text: 'Nós cuidaremos disto para você',
-       data: { mydata: 'Nós cuidaremos disto para você!' },
-       trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
-     });
+  instantNotify() {
+    this.localNotifications.schedule({
+      id: 1,
+      title: 'Iremos informar o vencimento do seu documento!',
+      text: 'Nós cuidaremos disto para você',
+      data: { mydata: 'Nós cuidaremos disto para você!' },
+      trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
+    });
   }
   // async scheduleAdvanced() {
   //   await LocalNotifications.schedule({

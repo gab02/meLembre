@@ -4,6 +4,9 @@
 	"webDir": "www",
 	"bundledWebRuntime": false,
 "plugins": {
+  	"SplashScreen": {
+			"backgroundColor": "#00984A"
+		}
 }}
 
 
