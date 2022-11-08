@@ -10,23 +10,30 @@
   <div style="padding: 1em;">
     <mat-card>
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="10">
 <mat-form-field style="width: 100%;">
   <mat-label>Selecione o tipo de lembrete</mat-label>
   <mat-select  [(ngModel)]="newItem.nomeDocumento" name="Qual Lembrete?">
-    <mat-option *ngFor="let doc of notifyList" (onSelectionChange)="populateType(doc.model)" value="{{doc.model}}">
-      {{doc.model}}
+    <mat-option *ngFor="let doc of notifyList" (onSelectionChange)="populateType(doc.nameNotify)" value="{{doc.nameNotify}}">
+      {{doc.nameNotify}}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
+      </ion-col>
+      <ion-col>
+        <ion-fab (click)="openDialog()">
+          <ion-fab-button size="small">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+          </ion-fab>
       </ion-col>
       </ion-row>
 <div *ngIf="visible" >
     <ion-row>
       <ion-col size=" 12">
         <mat-form-field style="width: 100%;">
-          <mat-label>Nome:</mat-label>
+          <mat-label>A fazer:</mat-label>
           <input [(ngModel)]="newItem.nome" matInput>
         </mat-form-field>
       </ion-col>
@@ -47,9 +54,9 @@
 </div>
   </mat-card>
 <br>
-    <div class="flex-container">
+    <div class="flex-container" *ngIf="visible" >
       <button mat-raised-button
-        style="background-color: #00984A; color: #fff; width: 80%; height: 50px; border-radius: 10px;"
+        style="background-color: #3171e0; color: #fff; width: 80%; height: 50px; border-radius: 10px;"
         (click)="addItem(newItem.value)">ADICIONAR DOCUMENTO</button>
     </div>
     <!-- <ion-button expand=" full" (click)="addItem()">Add Item!</ion-button> -->
@@ -60,14 +67,14 @@
         MEUS DOCUMENTOS
       </h3> -->
     <mat-accordion *ngFor="let item of items">
-      <mat-expansion-panel style="border-left: 6px solid #00984A;">
+      <mat-expansion-panel style="border-left: 6px solid #3171e0;">
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{item.nome}}
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <mat-card style="padding: 1em ;border-right: 6px solid #00984A;">
+        <mat-card style="padding: 1em ;border-right: 6px solid #3171e0;">
           <h3> <b>Tipo Documento:</b> {{item.nomeDocumento}}
           </h3>
           <h3> <b>Validade:</b> {{item.value | date:'dd/MM/yyyy'}}

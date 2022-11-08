@@ -1,5 +1,6 @@
+import { NotifyName } from './../shared/services/storage.service';
 import { DocumentoStorage } from './model/document';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {
@@ -20,7 +21,7 @@ import {
 import { Item, StorageService } from '../shared/services/storage.service';
 import { Storage } from '@ionic/storage';
 import { CustomModalPage } from '../shared/custom-modal/custom-modal.page';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DateAdapter } from '@angular/material/core';
 import {
   ActionPerformed,
@@ -28,7 +29,10 @@ import {
 } from '@capacitor/local-notifications';
 import { DatePipe } from '@angular/common';
 
-
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -37,10 +41,16 @@ import { DatePipe } from '@angular/common';
 export class HomePage implements OnInit {
   items: Item[] = [];
   documentsList: any[] = [];
-  notifyList: any[] = [];
+  notifyList: NotifyName[] = [];
   visible = false;
+  nameRemember;
+  animal: string;
+  name: string;
+
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newItem: Item = <Item>{};
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  newNotify: NotifyName = <NotifyName>{};
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('mylist', { static: false }) mylist: IonList;
 
@@ -62,92 +72,92 @@ export class HomePage implements OnInit {
     });
   }
   async ngOnInit(): Promise<void> {
-    this.notifyList = [
-      {
-        model: 'DOCUMENTOS',
-        id: '1',
-        list: [
-          { model: 'RG' },
-          { model: 'PASSAPORTE' },
-          { model: 'CNH' },
-          { model: 'CARTEIRA DE ESTUDANTE' },
-          { model: 'CONTRATO DE ALUGUEL' },
-          { model: 'CONTAS A VENCER' },
-          { model: 'IPTU' },
-          { model: 'IPVA' },
-        ],
-      },
-      {
-        model: 'LEMBRETES',
-        id: '2',
-        list: [
-          { model: 'RG' },
-          { model: 'PASSAPORTE' },
-          { model: 'CNH' },
-          { model: 'CARTEIRA DE ESTUDANTE' },
-          { model: 'CONTRATO DE ALUGUEL' },
-          { model: 'CONTAS A VENCER' },
-          { model: 'IPTU' },
-          { model: 'IPVA' },
-        ],
-      },
-      {
-        model: 'BEBER AGUA',
-        id: '3',
-        list: [
-          { model: 'RG' },
-          { model: 'PASSAPORTE' },
-          { model: 'CNH' },
-          { model: 'CARTEIRA DE ESTUDANTE' },
-          { model: 'CONTRATO DE ALUGUEL' },
-          { model: 'CONTAS A VENCER' },
-          { model: 'IPTU' },
-          { model: 'IPVA' },
-        ],
-      },
-      {
-        model: 'CONSULTAS MÉDICAS',
-        id: '4',
-        list: [
-          { model: 'RG' },
-          { model: 'PASSAPORTE' },
-          { model: 'CNH' },
-          { model: 'CARTEIRA DE ESTUDANTE' },
-          { model: 'CONTRATO DE ALUGUEL' },
-          { model: 'CONTAS A VENCER' },
-          { model: 'IPTU' },
-          { model: 'IPVA' },
-        ],
-      },
-      {
-        model: 'AFAZERES DOMÉSTICOS',
-        id: '5',
-        list: [
-          { model: 'RG' },
-          { model: 'PASSAPORTE' },
-          { model: 'CNH' },
-          { model: 'CARTEIRA DE ESTUDANTE' },
-          { model: 'CONTRATO DE ALUGUEL' },
-          { model: 'CONTAS A VENCER' },
-          { model: 'IPTU' },
-          { model: 'IPVA' },
-        ],
-      },
-      {
-        model: 'ATIVIDADES DO TRABALHO',
-        id: '6',
-        list: [
-          { model: 'RG' },
-          { model: 'PASSAPORTE' },
-          { model: 'CNH' },
-          { model: 'CARTEIRA DE ESTUDANTE' },
-          { model: 'CONTRATO DE ALUGUEL' },
-          { model: 'CONTAS A VENCER' },
-          { model: 'IPTU' },
-          { model: 'IPVA' },
-        ],
-      },
-    ];
+    // this.notifyList = [
+    //   {
+    //     model: 'DOCUMENTOS',
+    //     id: '1',
+    //     list: [
+    //       { model: 'RG' },
+    //       { model: 'PASSAPORTE' },
+    //       { model: 'CNH' },
+    //       { model: 'CARTEIRA DE ESTUDANTE' },
+    //       { model: 'CONTRATO DE ALUGUEL' },
+    //       { model: 'CONTAS A VENCER' },
+    //       { model: 'IPTU' },
+    //       { model: 'IPVA' },
+    //     ],
+    //   },
+    //   {
+    //     model: 'LEMBRETES',
+    //     id: '2',
+    //     list: [
+    //       { model: 'RG' },
+    //       { model: 'PASSAPORTE' },
+    //       { model: 'CNH' },
+    //       { model: 'CARTEIRA DE ESTUDANTE' },
+    //       { model: 'CONTRATO DE ALUGUEL' },
+    //       { model: 'CONTAS A VENCER' },
+    //       { model: 'IPTU' },
+    //       { model: 'IPVA' },
+    //     ],
+    //   },
+    //   {
+    //     model: 'BEBER AGUA',
+    //     id: '3',
+    //     list: [
+    //       { model: 'RG' },
+    //       { model: 'PASSAPORTE' },
+    //       { model: 'CNH' },
+    //       { model: 'CARTEIRA DE ESTUDANTE' },
+    //       { model: 'CONTRATO DE ALUGUEL' },
+    //       { model: 'CONTAS A VENCER' },
+    //       { model: 'IPTU' },
+    //       { model: 'IPVA' },
+    //     ],
+    //   },
+    //   {
+    //     model: 'CONSULTAS MÉDICAS',
+    //     id: '4',
+    //     list: [
+    //       { model: 'RG' },
+    //       { model: 'PASSAPORTE' },
+    //       { model: 'CNH' },
+    //       { model: 'CARTEIRA DE ESTUDANTE' },
+    //       { model: 'CONTRATO DE ALUGUEL' },
+    //       { model: 'CONTAS A VENCER' },
+    //       { model: 'IPTU' },
+    //       { model: 'IPVA' },
+    //     ],
+    //   },
+    //   {
+    //     model: 'AFAZERES DOMÉSTICOS',
+    //     id: '5',
+    //     list: [
+    //       { model: 'RG' },
+    //       { model: 'PASSAPORTE' },
+    //       { model: 'CNH' },
+    //       { model: 'CARTEIRA DE ESTUDANTE' },
+    //       { model: 'CONTRATO DE ALUGUEL' },
+    //       { model: 'CONTAS A VENCER' },
+    //       { model: 'IPTU' },
+    //       { model: 'IPVA' },
+    //     ],
+    //   },
+    //   {
+    //     model: 'ATIVIDADES DO TRABALHO',
+    //     id: '6',
+    //     list: [
+    //       { model: 'RG' },
+    //       { model: 'PASSAPORTE' },
+    //       { model: 'CNH' },
+    //       { model: 'CARTEIRA DE ESTUDANTE' },
+    //       { model: 'CONTRATO DE ALUGUEL' },
+    //       { model: 'CONTAS A VENCER' },
+    //       { model: 'IPTU' },
+    //       { model: 'IPVA' },
+    //     ],
+    //   },
+    // ];
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -203,7 +213,11 @@ export class HomePage implements OnInit {
   }
   populateType(data) {
     console.log(data);
-
+    if (data !== undefined) {
+      this.visible = true;
+    } else {
+      this.visible = false;
+    }
   }
   // CREATE
   addItem(data) {
@@ -215,7 +229,9 @@ export class HomePage implements OnInit {
       this.storageService.addItem(this.newItem).then((item) => {
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         this.newItem = <Item>{};
-        this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
+        this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
+                this.visible = false;
+
         this.loadItems(); // Or add it to the array directly
       });
     } else {
@@ -238,7 +254,10 @@ export class HomePage implements OnInit {
             this.newItem = <Item>{};
             this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
             this.scheduleNotification(data);
+
             this.loadItems(); // Or add it to the array directly
+            this.visible = false;
+
           });
         }
       }
@@ -255,9 +274,40 @@ export class HomePage implements OnInit {
     this.storageService.getItems().then((items) => {
       this.items = items;
     });
+    this.storageService.getNotify().then((data) => {
+      console.log(data);
+      this.notifyList = data;
+    });
   }
   alert(): void {
     this.openMsgModal('error', 'Infelizmente você não tem permissões', '...');
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+      width: '250px',
+      data: { name: this.name, animal: this.animal },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result===null || result === undefined || result === ' '){
+        return;
+      }else{
+              this.newNotify.nameNotify = result;
+              this.storageService
+                .addNotify('nameNotify', this.newNotify)
+                .then((item) => {
+                  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+                  this.newItem = <Item>{};
+                  this.showToast('TIPO DE LEMBRETE ADICIONADO COM SUCESSO!');
+                  this.loadItems(); // Or add it to the array directly
+                });
+
+
+      }
+
+
+    });
+
   }
   // UPDATE
   updateItem(item: Item) {
@@ -313,7 +363,6 @@ export class HomePage implements OnInit {
 
   scheduleNotification(data) {
     this.instantNotify();
-    console.log('||||||||||||||||||||||' + new Date(data + 5 * 1000));
     // this.localNotifications.schedule({
     //   id: 1,
     //   title: 'Attention',
@@ -323,12 +372,17 @@ export class HomePage implements OnInit {
     //   foreground: true, // Show the notification while app is open
     // });
     // Works as well!
+     const date = new Date(data);
+     console.log(new Date(date));
+     date.setHours(12, 0, 0); // Set hours, minutes and seconds
+
+     console.log(new Date(date));
     this.localNotifications.schedule({
       id: 2,
       title: 'Seu Documento está prestes a vencer',
       text: 'VOCÊ PEDIU, TE LEMBRAMOS!',
       data: { mydata: 'Confira logo!' },
-      trigger: { at: new Date(data + 5 * 1000) },
+      trigger: { at: new Date(date) },
     });
   }
   instantNotify() {
@@ -368,4 +422,14 @@ export class HomePage implements OnInit {
       icon: type,
     });
   }
+}
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: './modal/dialog-content-example-dialog.html',
+})
+export class DialogContentExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogContentExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
 }

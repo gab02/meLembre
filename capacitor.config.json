@@ -5,7 +5,7 @@
 	"bundledWebRuntime": false,
 "plugins": {
   	"SplashScreen": {
-			"backgroundColor": "#00984A"
+			"backgroundColor": "#3171e0"
 		}
 }}
 
