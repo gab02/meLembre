@@ -57,7 +57,7 @@
     <div class="flex-container" *ngIf="visible" >
       <button mat-raised-button
         style="background-color: #3171e0; color: #fff; width: 80%; height: 50px; border-radius: 10px;"
-        (click)="addItem(newItem.value)">ADICIONAR DOCUMENTO</button>
+        (click)="addItem(newItem.value)">ADICIONAR LEMBRETE</button>
     </div>
     <!-- <ion-button expand=" full" (click)="addItem()">Add Item!</ion-button> -->
 
@@ -75,7 +75,7 @@
 
         </mat-expansion-panel-header>
         <mat-card style="padding: 1em ;border-right: 6px solid #3171e0;">
-          <h3> <b>Tipo Documento:</b> {{item.nomeDocumento}}
+          <h3> <b>Tipo de lembrete:</b> {{item.nomeDocumento}}
           </h3>
           <h3> <b>Validade:</b> {{item.value | date:'dd/MM/yyyy'}}
           </h3>
