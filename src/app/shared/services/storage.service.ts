@@ -8,6 +8,9 @@ export interface Item {
   nome: string;
   modified: number;
 }
+export interface NotifyName {
+  nameNotify: string;
+}
 
 export interface LocalNotificationSchedule {
   at?: Date;
@@ -41,6 +44,17 @@ export class StorageService {
   }
 
   // CREATE
+  addNotify(key, data: NotifyName) {
+    return this.storage.get(key).then((notify: NotifyName[]) => {
+      if (notify) {
+        notify.push(data);
+        this.storage.set(key, notify);
+      } else {
+        this.storage.set(key, [data]);
+      }
+    });
+  }
+
   addItem(item: Item): Promise<any> {
     return this.storage.get(ITEMS_KEY).then((items: Item[]) => {
       if (items) {
@@ -51,7 +65,9 @@ export class StorageService {
       }
     });
   }
-
+  getNotify(): Promise<NotifyName[]> {
+    return this.storage.get('nameNotify');
+  }
   // READ
   getItems(): Promise<Item[]> {
     try {
