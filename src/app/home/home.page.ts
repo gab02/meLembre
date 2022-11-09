@@ -3,6 +3,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
+import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
+
+
+
 import {
   AlertController,
   IonList,
@@ -16,11 +20,11 @@ import { Storage } from '@ionic/storage';
 import { CustomModalPage } from '../shared/custom-modal/custom-modal.page';
 import { MatDialog } from '@angular/material/dialog';
 import { DateAdapter } from '@angular/material/core';
-import {
+/*import {
   ActionPerformed,
   LocalNotifications,
   LocalNotificationSchema,
-} from '@capacitor/local-notifications';
+} from '@capacitor/local-notifications';*/
 import { DatePipe } from '@angular/common';
 
 
@@ -47,11 +51,19 @@ export class HomePage implements OnInit {
     private router: Router,
     private datePipe: DatePipe,
     private storage: Storage,
-    private toastController: ToastController
+    private toastController: ToastController,
+
+    private platform: Platform
   ) {
     this.plt.ready().then(() => {
       this.loadItems();
     });
+    AdMob.initialize({
+      requestTrackingAuthorization: true,
+      //testingDevices: ['2077ef9a63d2b398840261c8221a0c9b'],
+      initializeForTesting: false,
+    });
+    //this.admob.initialize({ appId: 'ca-app-pub-6905686321259168~5501936327' });
   }
   async ngOnInit(): Promise<void> {
     this.documentsList = [
@@ -68,10 +80,10 @@ export class HomePage implements OnInit {
     await this.storage.create();
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     // Make sure we are allowed to send notifications!
-    await LocalNotifications.checkPermissions();
+    //await LocalNotifications.checkPermissions();
 
     // Register your custom action types
-    LocalNotifications.registerActionTypes({
+    /*LocalNotifications.registerActionTypes({
       types: [
         {
           id: 'CHAT_MSG',
@@ -93,10 +105,10 @@ export class HomePage implements OnInit {
           ],
         },
       ],
-    });
+    });*/
 
     // Received when notification is executed at the scheduled time
-    LocalNotifications.addListener(
+    /*LocalNotifications.addListener(
       'localNotificationReceived',
       (notification: LocalNotificationSchema) => {
         this.presentAlert(
@@ -104,10 +116,10 @@ export class HomePage implements OnInit {
           `Custom Data: ${JSON.stringify(notification.extra)}`
         );
       }
-    );
+    );*/
 
     // Received when a special action button is clicked or notification is tapped
-    LocalNotifications.addListener(
+    /*LocalNotifications.addListener(
       'localNotificationActionPerformed',
       (notification: ActionPerformed) => {
         this.presentAlert(
@@ -115,7 +127,8 @@ export class HomePage implements OnInit {
           `Input value: ${notification.inputValue}`
         );
       }
-    );
+    );*/
+    this.banner();
   }
   // CREATE
   addItem() {
@@ -224,7 +237,7 @@ export class HomePage implements OnInit {
   async scheduleBasic() {
     let data = this.items[0].value;
     data = this.datePipe.transform(Date.now(), 'dd');
-    await LocalNotifications.schedule({
+    /*await LocalNotifications.schedule({
       notifications: [
         {
           title:
@@ -237,10 +250,10 @@ export class HomePage implements OnInit {
           iconColor: '#00ff00',
         },
       ],
-    });
+    });*/
   }
   async scheduleAdvanced() {
-    await LocalNotifications.schedule({
+    /*await LocalNotifications.schedule({
       notifications: [
         {
           title:
@@ -257,14 +270,35 @@ export class HomePage implements OnInit {
           ],
         },
       ],
-    });
+    });*/
   }
   openMsgModal(type, title, text): void {
-     Swal.fire({
-       heightAuto: false,
-       title: title,
-       text: text,
-       icon: type
-     });
-}
+    Swal.fire({
+      heightAuto: false,
+      title: title,
+      text: text,
+      icon: type
+    });
+  }
+
+  banner() {
+      AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
+        // Subscribe Banner Event Listener
+      });
+  
+      AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
+        // Subscribe Change Banner Size
+      });
+  
+      const options: BannerAdOptions = {
+        adId: 'ca-app-pub-6905686321259168/3602267962',
+        //adId: 'ca-app-pub-3940256099942544/6300978111',
+        adSize: BannerAdSize.ADAPTIVE_BANNER,
+        position: BannerAdPosition.BOTTOM_CENTER,
+        margin: 0,
+        //isTesting: true
+        // npa: true
+      };
+      AdMob.showBanner(options);
+  }
 }

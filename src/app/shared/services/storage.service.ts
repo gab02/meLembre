@@ -36,7 +36,9 @@ const ITEMS_KEY = 'my-items';
   providedIn: 'root',
 })
 export class StorageService {
-  constructor(private storage: Storage) {}
+  constructor(private storage: Storage) {
+    
+  }
 
   // CREATE
   addItem(item: Item): Promise<any> {
@@ -52,7 +54,13 @@ export class StorageService {
 
   // READ
   getItems(): Promise<Item[]> {
-    return this.storage.get(ITEMS_KEY);
+    try {
+      return this.storage.get(ITEMS_KEY);      
+    } catch (error) {
+      this.storage.create();
+      return this.storage.get(ITEMS_KEY);
+    }
+
   }
 
   // UPDATE

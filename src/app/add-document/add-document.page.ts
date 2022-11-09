@@ -2,7 +2,9 @@ import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component, OnInit, Output } from '@angular/core';
 import { DocumentoStorage } from '../home/model/document';
-import { Storage } from '@capacitor/storage';
+import { Preferences } from '@capacitor/preferences';
+
+//import {LocalNotifications} from '@awesome-cordova-plugins/local-notifications/ngx';
 @Component({
   selector: 'app-add-document',
   templateUrl: './add-document.page.html',
@@ -28,11 +30,11 @@ export class AddDocumentPage implements OnInit {
     entity.validade = validade;
 
     //Buscar Para Adicionar
-    const resFather = Storage.get({ key: 'father' });
+    const resFather = Preferences.get({ key: 'father' });
     const data1 = JSON.parse((await resFather).value);
     console.log(data1);
     if (data1 === null) {
-      await Storage.set({
+      await Preferences.set({
         key: 'father',
         value: JSON.stringify(entity),
       });
@@ -47,7 +49,7 @@ export class AddDocumentPage implements OnInit {
       // });
       // this.people.push(new data1());
 
-      await Storage.set({
+      await Preferences.set({
         key: 'father',
         value: JSON.stringify(objArr),
       });
@@ -57,15 +59,15 @@ export class AddDocumentPage implements OnInit {
   }
 
   async setFatherStorage(documento) {
-    const res = Storage.get({ key: documento });
-    const resFather = Storage.get({ key: 'father' });
+    const res = Preferences.get({ key: documento });
+    const resFather = Preferences.get({ key: 'father' });
     const data = JSON.parse((await res).value);
     const data1 = JSON.parse((await resFather).value);
 
     if (!data1) {
       this.arrayValue.push(data);
       console.log(this.arrayValue);
-      await Storage.set({
+      await Preferences.set({
         key: 'father',
         value: JSON.stringify(this.arrayValue),
       });
@@ -73,7 +75,7 @@ export class AddDocumentPage implements OnInit {
       this.arrayValue.push(data);
       this.arrayValue.push(data1[0]);
       console.log(this.arrayValue);
-      await Storage.set({
+      await Preferences.set({
         key: 'father',
         value: JSON.stringify(this.arrayValue),
       });
