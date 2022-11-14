@@ -10,7 +10,7 @@ import {
   ILocalNotification,
 } from '@ionic-native/local-notifications/ngx';
 
-import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
+// import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
 
 
 
@@ -76,20 +76,17 @@ export class HomePage implements OnInit {
     this.plt.ready().then(() => {
       this.loadItems();
     });
-    AdMob.initialize({
-      requestTrackingAuthorization: true,
+    // AdMob.initialize({
+    //   requestTrackingAuthorization: true,
 
-      initializeForTesting: false,
-    });
-
+    //   initializeForTesting: false,
+    // });
   }
   async ngOnInit(): Promise<void> {
-  
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
- 
-    this.banner();
 
+    // this.banner();
   }
   populateType(data) {
     console.log(data);
@@ -100,7 +97,10 @@ export class HomePage implements OnInit {
     }
   }
   // CREATE
-  addItem(data) {
+  addItem(data, afazer, tipoAtividade, semanalmente) {
+    console.log(afazer);
+    console.log(tipoAtividade);
+
     console.log(data);
     this.newItem.modified = Date.now();
     this.newItem.id = Date.now();
@@ -110,7 +110,7 @@ export class HomePage implements OnInit {
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         this.newItem = <Item>{};
         this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
-                this.visible = false;
+        this.visible = false;
 
         this.loadItems(); // Or add it to the array directly
       });
@@ -123,9 +123,9 @@ export class HomePage implements OnInit {
         );
       } else {
         if (
-          this.newItem.nomeDocumento === undefined ||
-          this.newItem.value === undefined ||
-          this.newItem.nome === undefined
+          data === undefined ||
+          afazer === undefined ||
+          tipoAtividade === undefined
         ) {
           this.openMsgModal('error', 'Insira corretamente os dados', '...');
         } else {
@@ -133,11 +133,10 @@ export class HomePage implements OnInit {
             // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
             this.newItem = <Item>{};
             this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
-            this.scheduleNotification(data);
+            this.scheduleNotification(data, afazer, tipoAtividade,semanalmente);
 
             this.loadItems(); // Or add it to the array directly
             this.visible = false;
-
           });
         }
       }
@@ -155,13 +154,26 @@ export class HomePage implements OnInit {
       this.items = items;
     });
     this.storageService.getNotify().then((data) => {
-      console.log(data);
       this.notifyList = data;
+      if(data === null){
+        this.openInformationDialog();
+      }
     });
   }
   alert(): void {
     this.openMsgModal('error', 'Infelizmente você não tem permissões', '...');
   }
+  openInformationDialog() {
+    const dialogRef = this.dialog.open(InformationDialog, {
+      width: '500px',
+      height: '80%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
       width: '250px',
@@ -169,25 +181,20 @@ export class HomePage implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result===null || result === undefined || result === ' '){
+      if (result === null || result === undefined || result === ' ') {
         return;
-      }else{
-              this.newNotify.nameNotify = result;
-              this.storageService
-                .addNotify('nameNotify', this.newNotify)
-                .then((item) => {
-                  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-                  this.newItem = <Item>{};
-                  this.showToast('TIPO DE LEMBRETE ADICIONADO COM SUCESSO!');
-                  this.loadItems(); // Or add it to the array directly
-                });
-
-
+      } else {
+        this.newNotify.nameNotify = result;
+        this.storageService
+          .addNotify('nameNotify', this.newNotify)
+          .then((item) => {
+            // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+            this.newItem = <Item>{};
+            this.showToast('TIPO DE LEMBRETE ADICIONADO COM SUCESSO!');
+            this.loadItems(); // Or add it to the array directly
+          });
       }
-
-
     });
-
   }
   // UPDATE
   updateItem(item: Item) {
@@ -260,36 +267,52 @@ export class HomePage implements OnInit {
     });*/
   }
 
-  scheduleNotification(data) {
-    this.instantNotify();
-    // this.localNotifications.schedule({
-    //   id: 1,
-    //   title: 'Attention',
-    //   text: 'Simons Notification',
-    //   data: { mydata: 'My hidden message this is' },
-    //   trigger: { in: 5, unit: ELocalNotificationTriggerUnit.SECOND },
-    //   foreground: true, // Show the notification while app is open
-    // });
-    // Works as well!
-     const date = new Date(data);
-     console.log(new Date(date));
-     date.setHours(12, 0, 0); // Set hours, minutes and seconds
+  scheduleNotification(data, afazer, tipoAtividade,semanalmente) {
+    if(semanalmente){
+      this.onlyWeeklyHourNotify(data, afazer, tipoAtividade);
+    }else{
+    this.instantNotify(data, afazer, tipoAtividade);
+    // this.diaryHourNotify(data, afazer, tipoAtividade);
+    this.sevenHourNotify(data, afazer, tipoAtividade);
+    this.midDayNotify(data, afazer, tipoAtividade);
+    }
+    
+  }
+  onlyWeeklyHourNotify(data, afazer, tipoAtividade) {}
 
+  // diaryHourNotify(data, afazer, tipoAtividade) {}
+
+  sevenHourNotify(data, afazer, tipoAtividade) {
+     const date = new Date(data);
+     date.setHours(7, 0, 0);
      console.log(new Date(date));
+     this.localNotifications.schedule({
+       id: 2,
+       title: 'AVISO! SOBRE: '+ tipoAtividade,
+       text: 'FALTA POUCO TEMPO PARA: '+ afazer,
+       data: { mydata: 'Confira logo!' },
+       trigger: { at: new Date(date) },
+     });
+  }
+  midDayNotify(data, afazer, tipoAtividade) {
+    const date = new Date(data);
+    date.setHours(12, 0, 0); // Set hours, minutes and seconds
+
+    console.log(new Date(date));
     this.localNotifications.schedule({
       id: 2,
-      title: 'Seu Documento está prestes a vencer',
-      text: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+      title: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+      text: 'CHEGOU O MOMENTO PARA: ' + afazer,
       data: { mydata: 'Confira logo!' },
       trigger: { at: new Date(date) },
     });
   }
-  instantNotify() {
+
+  instantNotify(data, afazer, tipoAtividade) {
     this.localNotifications.schedule({
       id: 1,
-      title: 'Iremos informar o vencimento do seu documento!',
-      text: 'Nós cuidaremos disto para você',
-      data: { mydata: 'Nós cuidaremos disto para você!' },
+      title: 'IREMOS TE INFORMAR SOBRE: '+ tipoAtividade+' NÃO SE PREOCUPE!',
+      text: 'NÓS CUIDAREMOS DE TE LEMBRAR ISTO!',
       trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
     });
   }
@@ -322,28 +345,30 @@ export class HomePage implements OnInit {
     });
   }
 
-  banner() {
-      AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
-        // Subscribe Banner Event Listener
-      });
-  
-      AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
-        // Subscribe Change Banner Size
-      });
-  
-      const options: BannerAdOptions = {
-        adId: 'ca-app-pub-6905686321259168/3602267962',
-        //adId: 'ca-app-pub-3940256099942544/6300978111',
-        adSize: BannerAdSize.ADAPTIVE_BANNER,
-        position: BannerAdPosition.BOTTOM_CENTER,
-        margin: 0,
-        isTesting: true
-        // npa: true
-      };
-      AdMob.showBanner(options);
-  }
+  // banner() {
+  //     AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
+  //       // Subscribe Banner Event Listener
+  //     });
 
+  //     AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
+  //       // Subscribe Change Banner Size
+  //     });
+
+  //     const options: BannerAdOptions = {
+  //       adId: 'ca-app-pub-6905686321259168/3602267962',
+  //       //adId: 'ca-app-pub-3940256099942544/6300978111',
+  //       adSize: BannerAdSize.ADAPTIVE_BANNER,
+  //       position: BannerAdPosition.BOTTOM_CENTER,
+  //       margin: 0,
+  //       isTesting: true
+  //       // npa: true
+  //     };
+  //     AdMob.showBanner(options);
+  // }
 }
+
+;
+
 @Component({
   selector: 'dialog-content-example-dialog',
   templateUrl: './modal/dialog-content-example-dialog.html',
@@ -351,6 +376,16 @@ export class HomePage implements OnInit {
 export class DialogContentExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogContentExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
+}
+@Component({
+  selector: 'information-dialog',
+  templateUrl: './modal/information-dialog.html',
+})
+export class InformationDialog {
+  constructor(
+    public dialogRef: MatDialogRef<InformationDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 }

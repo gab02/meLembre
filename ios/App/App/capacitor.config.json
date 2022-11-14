@@ -3,5 +3,9 @@
 	"appName": "meLembre",
 	"webDir": "www",
 	"bundledWebRuntime": false,
-	"plugins": {}
+	"plugins": {
+		"SplashScreen": {
+			"backgroundColor": "#3171e0"
+		}
+	}
 }

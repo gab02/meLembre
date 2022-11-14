@@ -107,7 +107,7 @@ let SplashPage = class SplashPage {
     ngOnInit() {
         setTimeout(() => {
             this.route.navigate(['home']);
-        }, 4000);
+        }, 2700);
     }
 };
 SplashPage.ctorParameters = () => [
@@ -141,7 +141,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
   \****************************************************/
 /***/ ((module) => {
 
-module.exports = "<div style=\"height: 100%; background-color: #ffffff;\">\n  <lottie-player slot=\"end\" autoplay loop src=\"../../assets/meLembre.json\">\n  </lottie-player>\n</div>\n";
+module.exports = "<div style=\"height: 100%; background-color: #ffffff;\">\n  <lottie-player slot=\"end\" autoplay loop src=\"../../assets/meLembre1.json\">\n  </lottie-player>\n</div>\n";
 
 /***/ })
 

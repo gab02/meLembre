@@ -7,6 +7,7 @@ export interface Item {
   value: string;
   nome: string;
   modified: number;
+  weekly: boolean;
 }
 export interface NotifyName {
   nameNotify: string;
@@ -40,7 +41,7 @@ const ITEMS_KEY = 'my-items';
 })
 export class StorageService {
   constructor(private storage: Storage) {
-    
+
   }
 
   // CREATE
@@ -71,7 +72,7 @@ export class StorageService {
   // READ
   getItems(): Promise<Item[]> {
     try {
-      return this.storage.get(ITEMS_KEY);      
+      return this.storage.get(ITEMS_KEY);
     } catch (error) {
       this.storage.create();
       return this.storage.get(ITEMS_KEY);

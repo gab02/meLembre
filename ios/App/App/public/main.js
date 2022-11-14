@@ -460,7 +460,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 8163);
 /* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ 8546);
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/input */ 2937);
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/input */ 2937);
 /* harmony import */ var _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../shared/services/storage.service */ 1303);
 /* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/card */ 6794);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 1109);
@@ -468,15 +468,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 5472);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ 1777);
 /* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home.page */ 2267);
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/expansion */ 6027);
-/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/datepicker */ 6455);
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/expansion */ 6027);
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/datepicker */ 6455);
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/dialog */ 6346);
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/select */ 2765);
 /* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home-routing.module */ 2003);
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ 2872);
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/storage */ 2879);
 /* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/form-field */ 7551);
 /* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/core */ 3946);
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/icon */ 495);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/icon */ 495);
+
 
 
 
@@ -509,14 +511,15 @@ HomePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
             _angular_material_button__WEBPACK_IMPORTED_MODULE_12__.MatButtonModule,
             _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatFormFieldModule,
             _angular_material_core__WEBPACK_IMPORTED_MODULE_14__.MatNativeDateModule,
-            _angular_material_icon__WEBPACK_IMPORTED_MODULE_15__.MatIconModule,
+            _angular_material_select__WEBPACK_IMPORTED_MODULE_15__.MatSelectModule,
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_16__.MatIconModule,
             _angular_forms__WEBPACK_IMPORTED_MODULE_8__.ReactiveFormsModule,
-            _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__.MatDatepickerModule,
-            _angular_material_input__WEBPACK_IMPORTED_MODULE_17__.MatInputModule,
-            _angular_material_expansion__WEBPACK_IMPORTED_MODULE_18__.MatExpansionModule,
+            _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_17__.MatDatepickerModule,
+            _angular_material_input__WEBPACK_IMPORTED_MODULE_18__.MatInputModule,
+            _angular_material_expansion__WEBPACK_IMPORTED_MODULE_19__.MatExpansionModule,
             _home_routing_module__WEBPACK_IMPORTED_MODULE_3__.HomePageRoutingModule,
         ],
-        declarations: [_home_page__WEBPACK_IMPORTED_MODULE_2__.HomePage],
+        declarations: [_home_page__WEBPACK_IMPORTED_MODULE_2__.HomePage, _home_page__WEBPACK_IMPORTED_MODULE_2__.DialogContentExampleDialog],
         providers: [_shared_services_storage_service__WEBPACK_IMPORTED_MODULE_1__.StorageService, _ionic_storage__WEBPACK_IMPORTED_MODULE_4__.Storage, _angular_common__WEBPACK_IMPORTED_MODULE_7__.DatePipe, _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_0__.LocalNotifications],
         schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -535,22 +538,25 @@ HomePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DialogContentExampleDialog": () => (/* binding */ DialogContentExampleDialog),
 /* harmony export */   "HomePage": () => (/* binding */ HomePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 8163);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 8163);
 /* harmony import */ var _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.page.html?ngResource */ 1670);
 /* harmony import */ var _home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page.scss?ngResource */ 8504);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 1109);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 5485);
-/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ 157);
-/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ 8546);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 5472);
-/* harmony import */ var _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/services/storage.service */ 1303);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/storage */ 2879);
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/dialog */ 6346);
-/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/core */ 3946);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 8143);
+/* harmony import */ var _modal_dialog_content_example_dialog_html_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal/dialog-content-example-dialog.html?ngResource */ 6046);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 1109);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 5485);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ 157);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ 8546);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 5472);
+/* harmony import */ var _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shared/services/storage.service */ 1303);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage */ 2879);
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/dialog */ 6346);
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/core */ 3946);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 8143);
+
 
 
 
@@ -579,24 +585,104 @@ let HomePage = class HomePage {
         this.toastController = toastController;
         this.items = [];
         this.documentsList = [];
+        this.notifyList = [];
+        this.visible = false;
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         this.newItem = {};
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+        this.newNotify = {};
         this.plt.ready().then(() => {
             this.loadItems();
         });
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
-            this.documentsList = [
-                { model: 'RG' },
-                { model: 'PASSAPORTE' },
-                { model: 'CNH' },
-                { model: 'CARTEIRA DE ESTUDANTE' },
-                { model: 'CONTRATO DE ALUGUEL' },
-                { model: 'CONTAS A VENCER' },
-                { model: 'IPTU' },
-                { model: 'IPVA' },
-            ];
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            // this.notifyList = [
+            //   {
+            //     model: 'DOCUMENTOS',
+            //     id: '1',
+            //     list: [
+            //       { model: 'RG' },
+            //       { model: 'PASSAPORTE' },
+            //       { model: 'CNH' },
+            //       { model: 'CARTEIRA DE ESTUDANTE' },
+            //       { model: 'CONTRATO DE ALUGUEL' },
+            //       { model: 'CONTAS A VENCER' },
+            //       { model: 'IPTU' },
+            //       { model: 'IPVA' },
+            //     ],
+            //   },
+            //   {
+            //     model: 'LEMBRETES',
+            //     id: '2',
+            //     list: [
+            //       { model: 'RG' },
+            //       { model: 'PASSAPORTE' },
+            //       { model: 'CNH' },
+            //       { model: 'CARTEIRA DE ESTUDANTE' },
+            //       { model: 'CONTRATO DE ALUGUEL' },
+            //       { model: 'CONTAS A VENCER' },
+            //       { model: 'IPTU' },
+            //       { model: 'IPVA' },
+            //     ],
+            //   },
+            //   {
+            //     model: 'BEBER AGUA',
+            //     id: '3',
+            //     list: [
+            //       { model: 'RG' },
+            //       { model: 'PASSAPORTE' },
+            //       { model: 'CNH' },
+            //       { model: 'CARTEIRA DE ESTUDANTE' },
+            //       { model: 'CONTRATO DE ALUGUEL' },
+            //       { model: 'CONTAS A VENCER' },
+            //       { model: 'IPTU' },
+            //       { model: 'IPVA' },
+            //     ],
+            //   },
+            //   {
+            //     model: 'CONSULTAS MÉDICAS',
+            //     id: '4',
+            //     list: [
+            //       { model: 'RG' },
+            //       { model: 'PASSAPORTE' },
+            //       { model: 'CNH' },
+            //       { model: 'CARTEIRA DE ESTUDANTE' },
+            //       { model: 'CONTRATO DE ALUGUEL' },
+            //       { model: 'CONTAS A VENCER' },
+            //       { model: 'IPTU' },
+            //       { model: 'IPVA' },
+            //     ],
+            //   },
+            //   {
+            //     model: 'AFAZERES DOMÉSTICOS',
+            //     id: '5',
+            //     list: [
+            //       { model: 'RG' },
+            //       { model: 'PASSAPORTE' },
+            //       { model: 'CNH' },
+            //       { model: 'CARTEIRA DE ESTUDANTE' },
+            //       { model: 'CONTRATO DE ALUGUEL' },
+            //       { model: 'CONTAS A VENCER' },
+            //       { model: 'IPTU' },
+            //       { model: 'IPVA' },
+            //     ],
+            //   },
+            //   {
+            //     model: 'ATIVIDADES DO TRABALHO',
+            //     id: '6',
+            //     list: [
+            //       { model: 'RG' },
+            //       { model: 'PASSAPORTE' },
+            //       { model: 'CNH' },
+            //       { model: 'CARTEIRA DE ESTUDANTE' },
+            //       { model: 'CONTRATO DE ALUGUEL' },
+            //       { model: 'CONTAS A VENCER' },
+            //       { model: 'IPTU' },
+            //       { model: 'IPVA' },
+            //     ],
+            //   },
+            // ];
             this.dateAdapter.setLocale('pt');
             yield this.storage.create();
             // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -648,15 +734,26 @@ let HomePage = class HomePage {
             // );
         });
     }
+    populateType(data) {
+        console.log(data);
+        if (data !== undefined) {
+            this.visible = true;
+        }
+        else {
+            this.visible = false;
+        }
+    }
     // CREATE
-    addItem() {
+    addItem(data) {
+        console.log(data);
         this.newItem.modified = Date.now();
         this.newItem.id = Date.now();
         if (this.items === null) {
             this.storageService.addItem(this.newItem).then((item) => {
                 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
                 this.newItem = {};
-                this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
+                this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
+                this.visible = false;
                 this.loadItems(); // Or add it to the array directly
             });
         }
@@ -675,7 +772,9 @@ let HomePage = class HomePage {
                         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
                         this.newItem = {};
                         this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
+                        this.scheduleNotification(data);
                         this.loadItems(); // Or add it to the array directly
+                        this.visible = false;
                     });
                 }
             }
@@ -692,9 +791,35 @@ let HomePage = class HomePage {
         this.storageService.getItems().then((items) => {
             this.items = items;
         });
+        this.storageService.getNotify().then((data) => {
+            console.log(data);
+            this.notifyList = data;
+        });
     }
     alert() {
         this.openMsgModal('error', 'Infelizmente você não tem permissões', '...');
+    }
+    openDialog() {
+        const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+            width: '250px',
+            data: { name: this.name, animal: this.animal },
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result === null || result === undefined || result === ' ') {
+                return;
+            }
+            else {
+                this.newNotify.nameNotify = result;
+                this.storageService
+                    .addNotify('nameNotify', this.newNotify)
+                    .then((item) => {
+                    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+                    this.newItem = {};
+                    this.showToast('TIPO DE LEMBRETE ADICIONADO COM SUCESSO!');
+                    this.loadItems(); // Or add it to the array directly
+                });
+            }
+        });
     }
     // UPDATE
     updateItem(item) {
@@ -708,7 +833,7 @@ let HomePage = class HomePage {
         });
     }
     presentAlert(header, message) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             const alert = yield this.alertCtrl.create({
                 header,
                 message,
@@ -718,7 +843,7 @@ let HomePage = class HomePage {
         });
     }
     doRefresh(event) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             const loading = yield this.loadingController.create({
                 cssClass: 'my-custom-class',
                 message: 'Validando...',
@@ -741,7 +866,7 @@ let HomePage = class HomePage {
     }
     // Helper
     showToast(msg) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             const toast = yield this.toastController.create({
                 message: msg,
                 duration: 2000,
@@ -749,23 +874,37 @@ let HomePage = class HomePage {
             toast.present();
         });
     }
-    scheduleNotification() {
-        this.localNotifications.schedule({
-            id: 1,
-            title: 'Attention',
-            text: 'Simons Notification',
-            data: { mydata: 'My hidden message this is' },
-            trigger: { in: 5, unit: _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_3__.ELocalNotificationTriggerUnit.SECOND },
-            foreground: true, // Show the notification while app is open
-        });
-        // Works as well!
+    scheduleNotification(data) {
+        this.instantNotify();
         // this.localNotifications.schedule({
         //   id: 1,
         //   title: 'Attention',
         //   text: 'Simons Notification',
         //   data: { mydata: 'My hidden message this is' },
-        //   trigger: { at: new Date(new Date().getTime() + 5 * 1000) }
+        //   trigger: { in: 5, unit: ELocalNotificationTriggerUnit.SECOND },
+        //   foreground: true, // Show the notification while app is open
         // });
+        // Works as well!
+        const date = new Date(data);
+        console.log(new Date(date));
+        date.setHours(12, 0, 0); // Set hours, minutes and seconds
+        console.log(new Date(date));
+        this.localNotifications.schedule({
+            id: 2,
+            title: 'Seu Documento está prestes a vencer',
+            text: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+            data: { mydata: 'Confira logo!' },
+            trigger: { at: new Date(date) },
+        });
+    }
+    instantNotify() {
+        this.localNotifications.schedule({
+            id: 1,
+            title: 'Iremos informar o vencimento do seu documento!',
+            text: 'Nós cuidaremos disto para você',
+            data: { mydata: 'Nós cuidaremos disto para você!' },
+            trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
+        });
     }
     // async scheduleAdvanced() {
     //   await LocalNotifications.schedule({
@@ -788,7 +927,7 @@ let HomePage = class HomePage {
     //   });
     // }
     openMsgModal(type, title, text) {
-        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_2___default().fire({
+        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default().fire({
             heightAuto: false,
             title: title,
             text: text,
@@ -797,28 +936,45 @@ let HomePage = class HomePage {
     }
 };
 HomePage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.AlertController },
-    { type: _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_4__.StorageService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.Platform },
-    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__.MatDialog },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController },
-    { type: _angular_material_core__WEBPACK_IMPORTED_MODULE_9__.DateAdapter },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.Router },
-    { type: _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_3__.LocalNotifications },
-    { type: _angular_common__WEBPACK_IMPORTED_MODULE_11__.DatePipe },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_5__.Storage },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ToastController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.AlertController },
+    { type: _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_5__.StorageService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.Platform },
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_9__.MatDialog },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.LoadingController },
+    { type: _angular_material_core__WEBPACK_IMPORTED_MODULE_10__.DateAdapter },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_11__.Router },
+    { type: _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_4__.LocalNotifications },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_12__.DatePipe },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_6__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ToastController }
 ];
 HomePage.propDecorators = {
-    mylist: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_12__.ViewChild, args: ['mylist', { static: false },] }]
+    mylist: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_13__.ViewChild, args: ['mylist', { static: false },] }]
 };
-HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
+HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
         selector: 'app-home',
         template: _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], HomePage);
+
+let DialogContentExampleDialog = class DialogContentExampleDialog {
+    constructor(dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+    }
+};
+DialogContentExampleDialog.ctorParameters = () => [
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_9__.MatDialogRef },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_13__.Inject, args: [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_9__.MAT_DIALOG_DATA,] }] }
+];
+DialogContentExampleDialog = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
+        selector: 'dialog-content-example-dialog',
+        template: _modal_dialog_content_example_dialog_html_ngResource__WEBPACK_IMPORTED_MODULE_2__,
+    })
+], DialogContentExampleDialog);
 
 
 
@@ -865,6 +1021,17 @@ let StorageService = class StorageService {
         this.storage = storage;
     }
     // CREATE
+    addNotify(key, data) {
+        return this.storage.get(key).then((notify) => {
+            if (notify) {
+                notify.push(data);
+                this.storage.set(key, notify);
+            }
+            else {
+                this.storage.set(key, [data]);
+            }
+        });
+    }
     addItem(item) {
         return this.storage.get(ITEMS_KEY).then((items) => {
             if (items) {
@@ -875,6 +1042,9 @@ let StorageService = class StorageService {
                 return this.storage.set(ITEMS_KEY, [item]);
             }
         });
+    }
+    getNotify() {
+        return this.storage.get('nameNotify');
     }
     // READ
     getItems() {
@@ -1268,7 +1438,7 @@ module.exports = "#container {\n  text-align: center;\n  position: absolute;\n  
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-content>\n  <div style=\"padding: 1em;\">\n    <mat-card style=\"padding: 1em;   border-left: 6px solid #00984A;\n\">\n      <ion-row>\n        <ion-col>\n          <mat-form-field style=\"width: 100%;\" appearance=\"fill\">\n            <mat-label>Nome do documento</mat-label>\n            <input [(ngModel)]=\"documento\" matInput>\n          </mat-form-field>\n        </ion-col>\n\n        <ion-col>\n          <mat-form-field style=\"width: 100%;\" appearance=\"fill\">\n            <mat-label>Data de validade</mat-label>\n            <input [(ngModel)]=\"validade\" matInput>\n          </mat-form-field>\n        </ion-col>\n\n        <button mat-stroked-button color=\"primary\" style=\"width: 100%;\"\n          (click)=\"navigate('', documento, validade)\">Adicionar\n          documento</button>\n      </ion-row>\n    </mat-card>\n  </div>\n\n</ion-content>\n";
+module.exports = "<ion-content>\n  <div style=\"padding: 1em;\">\n    <mat-card style=\"padding: 1em;   border-left: 6px solid #3171e0;\n\">\n      <ion-row>\n        <ion-col>\n          <mat-form-field style=\"width: 100%;\" appearance=\"fill\">\n            <mat-label>Nome do documento</mat-label>\n            <input [(ngModel)]=\"documento\" matInput>\n          </mat-form-field>\n        </ion-col>\n\n        <ion-col>\n          <mat-form-field style=\"width: 100%;\" appearance=\"fill\">\n            <mat-label>Data de validade</mat-label>\n            <input [(ngModel)]=\"validade\" matInput>\n          </mat-form-field>\n        </ion-col>\n\n        <button mat-stroked-button color=\"primary\" style=\"width: 100%;\"\n          (click)=\"navigate('', documento, validade)\">Adicionar\n          documento</button>\n      </ion-row>\n    </mat-card>\n  </div>\n\n</ion-content>\n";
 
 /***/ }),
 
@@ -1290,7 +1460,18 @@ module.exports = "<ion-router-outlet></ion-router-outlet>\n";
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-content [fullscreen]=\"true\">\r\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\r\n    <ion-refresher-content></ion-refresher-content>\r\n  </ion-refresher>\r\n  <ion-toolbar class=\"new-background-color\">\r\n    <ion-title>\r\n      ME LEMBRE! </ion-title>\r\n  </ion-toolbar>\r\n\r\n  <ion-button (click)=\"scheduleNotification()\" expand=\"block\" fill=\"clear\">\r\n    PQPPPPPPPPPPPPPPPPPPPPPPPP\r\n  </ion-button>\r\n\r\n\r\n\r\n  <!-- Documento Inserido -->\r\n  <div style=\"padding: 1em;\">\r\n    <ion-row>\r\n      <ion-col size=\"12\">\r\n\r\n        <ion-list>\r\n          <ion-item>\r\n            <ion-select [(ngModel)]=\"newItem.nomeDocumento\" placeholder=\"Documento\">\r\n              <ion-select-option *ngFor=\"let doc of documentsList\" value=\"{{doc.model}}\">{{doc.model}}\r\n              </ion-select-option>\r\n            </ion-select>\r\n          </ion-item>\r\n        </ion-list>\r\n      </ion-col>\r\n      </ion-row>\r\n          <ion-row>\r\n\r\n      <ion-col size=\" 12\">\r\n        <mat-form-field style=\"width: 100%;\">\r\n          <mat-label>Apelido:</mat-label>\r\n          <input [(ngModel)]=\"newItem.nome\" matInput>\r\n        </mat-form-field>\r\n      </ion-col>\r\n    </ion-row>\r\n\r\n    <br>\r\n    <mat-form-field style=\"width: 100%;\">\r\n      <mat-label>Selecione a data de vencimento</mat-label>\r\n      <input matInput [(ngModel)]=\"newItem.value\" [matDatepicker]=\"picker\">\r\n      <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n      <mat-datepicker #picker></mat-datepicker>\r\n    </mat-form-field>\r\n    <br><br>\r\n\r\n    <div class=\"flex-container\">\r\n      <button mat-raised-button\r\n        style=\"background-color: #00984A; color: #fff; width: 80%; height: 50px; border-radius: 10px;\"\r\n        (click)=\"addItem()\">ADICIONAR DOCUMENTO</button>\r\n    </div>\r\n    <!-- <ion-button expand=\" full\" (click)=\"addItem()\">Add Item!</ion-button> -->\r\n\r\n    <BR>\r\n    <!-- <div *ngIf=\"items.length !== 0\">\r\n      <h3 class=\"flex-container\">\r\n        MEUS DOCUMENTOS\r\n      </h3> -->\r\n    <mat-accordion *ngFor=\"let item of items\">\r\n      <mat-expansion-panel style=\"border-left: 6px solid #00984A;\">\r\n        <mat-expansion-panel-header>\r\n          <mat-panel-title>\r\n            {{item.nome}}\r\n          </mat-panel-title>\r\n\r\n        </mat-expansion-panel-header>\r\n        <mat-card style=\"padding: 1em ;border-right: 6px solid #00984A;\">\r\n          <h3> <b>Tipo Documento:</b> {{item.nomeDocumento}}\r\n          </h3>\r\n          <h3> <b>Validade:</b> {{item.value | date:'dd/MM/yyyy'}}\r\n          </h3>\r\n          <br>\r\n          <div class=\"flex-container\">\r\n            <button mat-raised-button color=\"warn\" style=\"width: 80%;\" (click)=\"deleteItem(item)\">\r\n              EXCLUIR</button>\r\n          </div>\r\n        </mat-card>\r\n      </mat-expansion-panel>\r\n      <br>\r\n\r\n    </mat-accordion>\r\n    <!-- </div> -->\r\n\r\n\r\n\r\n    <br><br>\r\n    <br>\r\n    <img src=\"../../assets/icon.png\">\r\n\r\n  </div>\r\n</ion-content>\r\n";
+module.exports = "<ion-content [fullscreen]=\"true\">\r\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\r\n    <ion-refresher-content></ion-refresher-content>\r\n  </ion-refresher>\r\n  <ion-toolbar class=\"new-background-color\">\r\n    <ion-title>\r\n      ME LEMBRE! </ion-title>\r\n  </ion-toolbar>\r\n  <!-- Documento Inserido -->\r\n  <div style=\"padding: 1em;\">\r\n    <mat-card>\r\n    <ion-row>\r\n      <ion-col size=\"10\">\r\n<mat-form-field style=\"width: 100%;\">\r\n  <mat-label>Selecione o tipo de lembrete</mat-label>\r\n  <mat-select  [(ngModel)]=\"newItem.nomeDocumento\" name=\"Qual Lembrete?\">\r\n    <mat-option *ngFor=\"let doc of notifyList\" (onSelectionChange)=\"populateType(doc.nameNotify)\" value=\"{{doc.nameNotify}}\">\r\n      {{doc.nameNotify}}\r\n    </mat-option>\r\n  </mat-select>\r\n</mat-form-field>\r\n\r\n      </ion-col>\r\n      <ion-col>\r\n        <ion-fab (click)=\"openDialog()\">\r\n          <ion-fab-button size=\"small\">\r\n            <ion-icon name=\"add\"></ion-icon>\r\n          </ion-fab-button>\r\n          </ion-fab>\r\n      </ion-col>\r\n      </ion-row>\r\n<div *ngIf=\"visible\" >\r\n    <ion-row>\r\n      <ion-col size=\" 12\">\r\n        <mat-form-field style=\"width: 100%;\">\r\n          <mat-label>A fazer:</mat-label>\r\n          <input [(ngModel)]=\"newItem.nome\" matInput>\r\n        </mat-form-field>\r\n      </ion-col>\r\n    </ion-row>\r\n\r\n    <br>\r\n    <ion-row>\r\n      <ion-col size=\" 12\">\r\n    <mat-form-field style=\"width: 100%;\">\r\n      <mat-label>Selecione a data</mat-label>\r\n      <input matInput [(ngModel)]=\"newItem.value\" readonly=\"true\" [matDatepicker]=\"picker\">\r\n      <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n      <mat-datepicker #picker></mat-datepicker>\r\n    </mat-form-field>\r\n    </ion-col>\r\n    </ion-row>\r\n    <br>\r\n</div>\r\n  </mat-card>\r\n<br>\r\n    <div class=\"flex-container\" *ngIf=\"visible\" >\r\n      <button mat-raised-button\r\n        style=\"background-color: #3171e0; color: #fff; width: 80%; height: 50px; border-radius: 10px;\"\r\n        (click)=\"addItem(newItem.value)\">ADICIONAR DOCUMENTO</button>\r\n    </div>\r\n    <!-- <ion-button expand=\" full\" (click)=\"addItem()\">Add Item!</ion-button> -->\r\n\r\n    <BR>\r\n    <!-- <div *ngIf=\"items.length !== 0\">\r\n      <h3 class=\"flex-container\">\r\n        MEUS DOCUMENTOS\r\n      </h3> -->\r\n    <mat-accordion *ngFor=\"let item of items\">\r\n      <mat-expansion-panel style=\"border-left: 6px solid #3171e0;\">\r\n        <mat-expansion-panel-header>\r\n          <mat-panel-title>\r\n            {{item.nome}}\r\n          </mat-panel-title>\r\n\r\n        </mat-expansion-panel-header>\r\n        <mat-card style=\"padding: 1em ;border-right: 6px solid #3171e0;\">\r\n          <h3> <b>Tipo Documento:</b> {{item.nomeDocumento}}\r\n          </h3>\r\n          <h3> <b>Validade:</b> {{item.value | date:'dd/MM/yyyy'}}\r\n          </h3>\r\n          <br>\r\n          <div class=\"flex-container\">\r\n            <button mat-raised-button color=\"warn\" style=\"width: 80%;\" (click)=\"deleteItem(item)\">\r\n              EXCLUIR</button>\r\n          </div>\r\n        </mat-card>\r\n      </mat-expansion-panel>\r\n      <br>\r\n\r\n    </mat-accordion>\r\n    <!-- </div> -->\r\n\r\n\r\n\r\n    <br><br>\r\n    <br>\r\n    <img src=\"../../assets/icon.png\">\r\n\r\n  </div>\r\n</ion-content>\r\n";
+
+/***/ }),
+
+/***/ 6046:
+/*!**************************************************************************!*\
+  !*** ./src/app/home/modal/dialog-content-example-dialog.html?ngResource ***!
+  \**************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-row>\r\n  <ion-col size=\" 12\">\r\n    <mat-form-field style=\"width: 100%;\">\r\n      <mat-label>Escreva o tipo do lembrete:</mat-label>\r\n      <input matInput [(ngModel)]=\"data.name\">\r\n    </mat-form-field>\r\n  </ion-col>\r\n</ion-row>\r\n  <div class=\"flex-container\">\r\n    <button mat-raised-button\r\n     [mat-dialog-close]=\"data.name\" style=\"background-color: #3171e0; color: #fff; width: 100%; height: 50px; border-radius: 10px;\"\r\n      >ADICIONAR LEMBRETE</button>\r\n  </div>\r\n";
 
 /***/ })
 
