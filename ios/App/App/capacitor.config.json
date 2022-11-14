@@ -1,0 +1,7 @@
+{
+	"appId": "br.melembre.software2you",
+	"appName": "meLembre",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"plugins": {}
+}
