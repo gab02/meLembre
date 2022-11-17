@@ -32,6 +32,7 @@ import { DateAdapter } from '@angular/material/core';
   LocalNotificationSchema,
 } from '@capacitor/local-notifications';*/
 import { DatePipe } from '@angular/common';
+import { App } from '@capacitor/app';
 
 export interface DialogData {
   animal: string;
@@ -50,14 +51,15 @@ export class HomePage implements OnInit {
   nameRemember;
   animal: string;
   name: string;
-
+  minValue: Date;
+  maxValue: Date;
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newItem: Item = <Item>{};
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newNotify: NotifyName = <NotifyName>{};
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('mylist', { static: false }) mylist: IonList;
-
+  minDate = new Date();
   constructor(
     private alertCtrl: AlertController,
     private storageService: StorageService,
@@ -69,13 +71,15 @@ export class HomePage implements OnInit {
     private localNotifications: LocalNotifications,
     private datePipe: DatePipe,
     private storage: Storage,
-    private toastController: ToastController,
-
-    private platform: Platform
+    private toastController: ToastController
   ) {
+    // this.plt.backButton.subscribeWithPriority(10, () => {
+    //   App.exitApp();
+    // });
     this.plt.ready().then(() => {
       this.loadItems();
     });
+
     // AdMob.initialize({
     //   requestTrackingAuthorization: true,
 
@@ -83,6 +87,9 @@ export class HomePage implements OnInit {
     // });
   }
   async ngOnInit(): Promise<void> {
+    // this.plt.backButton.subscribeWithPriority(10, () => {
+    //   App.exitApp();
+    // });
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
 
@@ -96,10 +103,41 @@ export class HomePage implements OnInit {
       this.visible = false;
     }
   }
+  async present() {
+    Swal.fire({
+      heightAuto: false,
+      title: 'Você tem certeza?',
+      text: 'Você deseja mesmo sair da aplicação?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00c1af',
+      cancelButtonText: 'Não',
+      cancelButtonColor: '#f1b080',
+      confirmButtonText: 'Sim, Tenho certeza!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        App.exitApp();
+      }
+    });
+  }
   // CREATE
-  addItem(data, afazer, tipoAtividade, semanalmente) {
+  addItem(data, afazer, tipoAtividade, semanalmente, hora) {
+    const hor1 = this.datePipe.transform(hora, 'HH');
+
+    const hor2 = this.datePipe.transform(hora, 'mm');
+
+    const hor3 = this.datePipe.transform(hora, 'ss');
+
+    const n1: number = +hor1;
+    const n2: number = +hor2;
+    const n3: number = +hor3;
+
+    const date = new Date(data);
+    date.setHours(n1, n2, n3); // Set hours, minutes and seconds
+    console.log(date);
     console.log(afazer);
     console.log(tipoAtividade);
+    console.log(hora);
 
     console.log(data);
     this.newItem.modified = Date.now();
@@ -132,11 +170,17 @@ export class HomePage implements OnInit {
           this.storageService.addItem(this.newItem).then((item) => {
             // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
             this.newItem = <Item>{};
-            this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
-            this.scheduleNotification(data, afazer, tipoAtividade,semanalmente);
+            this.visible = false;
+            this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
+            this.scheduleNotification(
+              date,
+              afazer,
+              tipoAtividade,
+              semanalmente,
+              hora
+            );
 
             this.loadItems(); // Or add it to the array directly
-            this.visible = false;
           });
         }
       }
@@ -155,7 +199,7 @@ export class HomePage implements OnInit {
     });
     this.storageService.getNotify().then((data) => {
       this.notifyList = data;
-      if(data === null){
+      if (data === null) {
         this.openInformationDialog();
       }
     });
@@ -267,51 +311,59 @@ export class HomePage implements OnInit {
     });*/
   }
 
-  scheduleNotification(data, afazer, tipoAtividade,semanalmente) {
-    if(semanalmente){
+  scheduleNotification(data, afazer, tipoAtividade, semanalmente, hora) {
+    if (semanalmente) {
       this.onlyWeeklyHourNotify(data, afazer, tipoAtividade);
-    }else{
-    this.instantNotify(data, afazer, tipoAtividade);
-    // this.diaryHourNotify(data, afazer, tipoAtividade);
-    this.sevenHourNotify(data, afazer, tipoAtividade);
-    this.midDayNotify(data, afazer, tipoAtividade);
+    } else {
+      this.instantNotify(data, afazer, tipoAtividade);
+      // this.diaryHourNotify(data, afazer, tipoAtividade);
+      this.sevenHourNotify(data, afazer, tipoAtividade);
+      // this.midDayNotify(data, afazer, tipoAtividade);
+      this.atHourNotify(data, afazer, tipoAtividade, hora);
     }
-    
   }
   onlyWeeklyHourNotify(data, afazer, tipoAtividade) {}
 
   // diaryHourNotify(data, afazer, tipoAtividade) {}
 
   sevenHourNotify(data, afazer, tipoAtividade) {
-     const date = new Date(data);
-     date.setHours(7, 0, 0);
-     console.log(new Date(date));
-     this.localNotifications.schedule({
-       id: 2,
-       title: 'AVISO! SOBRE: '+ tipoAtividade,
-       text: 'FALTA POUCO TEMPO PARA: '+ afazer,
-       data: { mydata: 'Confira logo!' },
-       trigger: { at: new Date(date) },
-     });
-  }
-  midDayNotify(data, afazer, tipoAtividade) {
     const date = new Date(data);
-    date.setHours(12, 0, 0); // Set hours, minutes and seconds
-
+    date.setHours(7, 0, 0);
     console.log(new Date(date));
+    this.localNotifications.schedule({
+      id: 2,
+      title: 'AVISO! SOBRE: ' + tipoAtividade,
+      text: 'FALTA POUCO TEMPO PARA: ' + afazer,
+      data: { mydata: 'Confira logo!' },
+      trigger: { at: new Date(date) },
+    });
+  }
+  // midDayNotify(data, afazer, tipoAtividade) {
+  //   const date = new Date(data);
+  //   date.setHours(12, 0, 0); // Set hours, minutes and seconds
+
+  //   console.log(new Date(date));
+  //   this.localNotifications.schedule({
+  //     id: 2,
+  //     title: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+  //     text: 'CHEGOU O MOMENTO PARA: ' + afazer,
+  //     data: { mydata: 'Confira logo!' },
+  //     trigger: { at: new Date(date) },
+  //   });
+  // }
+  atHourNotify(data, afazer, tipoAtividade, hora) {
     this.localNotifications.schedule({
       id: 2,
       title: 'VOCÊ PEDIU, TE LEMBRAMOS!',
       text: 'CHEGOU O MOMENTO PARA: ' + afazer,
       data: { mydata: 'Confira logo!' },
-      trigger: { at: new Date(date) },
+      trigger: { at: data },
     });
   }
-
   instantNotify(data, afazer, tipoAtividade) {
     this.localNotifications.schedule({
       id: 1,
-      title: 'IREMOS TE INFORMAR SOBRE: '+ tipoAtividade+' NÃO SE PREOCUPE!',
+      title: 'IREMOS TE INFORMAR SOBRE: ' + tipoAtividade + ' NÃO SE PREOCUPE!',
       text: 'NÓS CUIDAREMOS DE TE LEMBRAR ISTO!',
       trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
     });

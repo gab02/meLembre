@@ -1,4 +1,3 @@
-import { AddDocumentPageModule } from './add-document/add-document.module';
 import { HomePageRoutingModule } from './home/home-routing.module';
 import { HomePageModule } from './home/home.module';
 import { NgModule } from '@angular/core';
@@ -10,7 +9,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddDocumentPageRoutingModule } from './add-document/add-document-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,8 +20,6 @@ import { AddDocumentPageRoutingModule } from './add-document/add-document-routin
     BrowserAnimationsModule,
     HomePageModule,
     HomePageRoutingModule,
-    AddDocumentPageModule,
-    AddDocumentPageRoutingModule
     
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

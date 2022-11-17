@@ -12,6 +12,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTimepickerModule } from 'mat-timepicker';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,6 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatTimepickerModule,
     MatIconModule,
     ReactiveFormsModule,
     MatDatepickerModule,

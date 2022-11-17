@@ -8,6 +8,7 @@ export interface Item {
   nome: string;
   modified: number;
   weekly: boolean;
+  hour: Date;
 }
 export interface NotifyName {
   nameNotify: string;
