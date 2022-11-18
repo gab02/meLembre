@@ -141,7 +141,11 @@ CustomModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
   \***********************************************************************/
 /***/ ((module) => {
 
+<<<<<<< HEAD
 module.exports = "body {\n  background: rgba(0, 0, 0, 0);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1tb2RhbC5wYWdlLnNjc3MiLCIuLi8uLi8uLi8uLi8uLi8uLi8uLi8uLi8uLi9Nb2JpbGUlMjBEb2N1bWVudHMvY29tfmFwcGxlfkNsb3VkRG9jcy9Eb2N1bWVudHMvYXBwbGljYXRpb25zL21lTGVtYnJlL3NyYy9hcHAvc2hhcmVkL2N1c3RvbS1tb2RhbC9jdXN0b20tbW9kYWwucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNEJBQUE7QUNDSiIsImZpbGUiOiJjdXN0b20tbW9kYWwucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gICAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwKTtcbn1cbiIsImJvZHkge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDApO1xufSJdfQ== */";
+=======
+module.exports = "body {\n  background: rgba(0, 0, 0, 0);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1tb2RhbC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSw0QkFBQTtBQUNKIiwiZmlsZSI6ImN1c3RvbS1tb2RhbC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDApO1xufVxuIl19 */";
+>>>>>>> 83c9b53 (Sync)
 
 /***/ }),
 

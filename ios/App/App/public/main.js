@@ -1,5 +1,216 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["main"],{
 
+<<<<<<< HEAD
+=======
+/***/ 683:
+/*!*************************************************************!*\
+  !*** ./src/app/add-document/add-document-routing.module.ts ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AddDocumentPageRoutingModule": () => (/* binding */ AddDocumentPageRoutingModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 8163);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1109);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 5485);
+/* harmony import */ var _add_document_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add-document.page */ 7327);
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _add_document_page__WEBPACK_IMPORTED_MODULE_0__.AddDocumentPage
+    }
+];
+let AddDocumentPageRoutingModule = class AddDocumentPageRoutingModule {
+};
+AddDocumentPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule],
+    })
+], AddDocumentPageRoutingModule);
+
+
+
+/***/ }),
+
+/***/ 5783:
+/*!*****************************************************!*\
+  !*** ./src/app/add-document/add-document.module.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AddDocumentPageModule": () => (/* binding */ AddDocumentPageModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 8163);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/button */ 2872);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 1109);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 8143);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 1777);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 5472);
+/* harmony import */ var _add_document_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add-document-routing.module */ 683);
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/form-field */ 7551);
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/card */ 6794);
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/input */ 2937);
+/* harmony import */ var _add_document_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./add-document.page */ 7327);
+
+
+
+
+
+
+
+
+
+
+
+let AddDocumentPageModule = class AddDocumentPageModule {
+};
+AddDocumentPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule,
+            _angular_material_button__WEBPACK_IMPORTED_MODULE_7__.MatButtonModule,
+            _angular_material_card__WEBPACK_IMPORTED_MODULE_8__.MatCardModule,
+            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_9__.MatFormFieldModule,
+            _angular_material_input__WEBPACK_IMPORTED_MODULE_10__.MatInputModule,
+            _add_document_routing_module__WEBPACK_IMPORTED_MODULE_0__.AddDocumentPageRoutingModule,
+        ],
+        declarations: [_add_document_page__WEBPACK_IMPORTED_MODULE_1__.AddDocumentPage],
+    })
+], AddDocumentPageModule);
+
+
+
+/***/ }),
+
+/***/ 7327:
+/*!***************************************************!*\
+  !*** ./src/app/add-document/add-document.page.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AddDocumentPage": () => (/* binding */ AddDocumentPage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 8163);
+/* harmony import */ var _add_document_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add-document.page.html?ngResource */ 4132);
+/* harmony import */ var _add_document_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./add-document.page.scss?ngResource */ 1369);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 5472);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 5485);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 1109);
+/* harmony import */ var _home_model_document__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../home/model/document */ 1250);
+/* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/storage */ 8369);
+
+
+
+
+
+
+
+
+let AddDocumentPage = class AddDocumentPage {
+    constructor(navCtrl, router) {
+        this.navCtrl = navCtrl;
+        this.router = router;
+        this.arrayValue = [];
+    }
+    ngOnInit() { }
+    navigate(local, documento, validade) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            this.setStorage(documento, validade);
+            this.router.navigate([local]);
+        });
+    }
+    setStorage(documento, validade) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const entity = new _home_model_document__WEBPACK_IMPORTED_MODULE_2__.DocumentoStorage();
+            entity.nomeDocumento = documento;
+            entity.validade = validade;
+            //Buscar Para Adicionar
+            const resFather = _capacitor_storage__WEBPACK_IMPORTED_MODULE_3__.Storage.get({ key: 'father' });
+            const data1 = JSON.parse((yield resFather).value);
+            console.log(data1);
+            if (data1 === null) {
+                yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_3__.Storage.set({
+                    key: 'father',
+                    value: JSON.stringify(entity),
+                });
+            }
+            else {
+                const objArr = []; //Array final
+                // ForEach(data1, (idx, obj) => {
+                //   objArr.push([obj.nomeDocumento, obj.validade]);
+                // });
+                // ForEach(entity, (idx, obj) => {
+                //   objArr.push([entity.nomeDocumento, entity.validade]);
+                // });
+                // this.people.push(new data1());
+                yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_3__.Storage.set({
+                    key: 'father',
+                    value: JSON.stringify(objArr),
+                });
+            }
+            console.log(data1);
+            // this.setFatherStorage(documento);
+        });
+    }
+    setFatherStorage(documento) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const res = _capacitor_storage__WEBPACK_IMPORTED_MODULE_3__.Storage.get({ key: documento });
+            const resFather = _capacitor_storage__WEBPACK_IMPORTED_MODULE_3__.Storage.get({ key: 'father' });
+            const data = JSON.parse((yield res).value);
+            const data1 = JSON.parse((yield resFather).value);
+            if (!data1) {
+                this.arrayValue.push(data);
+                console.log(this.arrayValue);
+                yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_3__.Storage.set({
+                    key: 'father',
+                    value: JSON.stringify(this.arrayValue),
+                });
+            }
+            else {
+                this.arrayValue.push(data);
+                this.arrayValue.push(data1[0]);
+                console.log(this.arrayValue);
+                yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_3__.Storage.set({
+                    key: 'father',
+                    value: JSON.stringify(this.arrayValue),
+                });
+            }
+        });
+    }
+};
+AddDocumentPage.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavController },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router }
+];
+AddDocumentPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+        selector: 'app-add-document',
+        template: _add_document_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+        styles: [_add_document_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
+    })
+], AddDocumentPage);
+
+
+
+/***/ }),
+
+>>>>>>> 83c9b53 (Sync)
 /***/ 158:
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -35,6 +246,13 @@ const routes = [
         path: 'custom-modal',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_shared_custom-modal_custom-modal_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./shared/custom-modal/custom-modal.module */ 6945)).then((m) => m.CustomModalPageModule),
     },
+<<<<<<< HEAD
+=======
+    {
+        path: 'add-document',
+        loadChildren: () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./add-document/add-document.module */ 5783)).then((m) => m.AddDocumentPageModule),
+    },
+>>>>>>> 83c9b53 (Sync)
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -62,6 +280,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 8163);
 /* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component.html?ngResource */ 3383);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss?ngResource */ 3169);
@@ -74,12 +293,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+=======
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 8163);
+/* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component.html?ngResource */ 3383);
+/* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss?ngResource */ 3169);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1109);
+/* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/storage */ 8369);
+>>>>>>> 83c9b53 (Sync)
 
 
 
 
 
 let AppComponent = class AppComponent {
+<<<<<<< HEAD
     constructor(platform) {
         this.platform = platform;
         this.getAndValidate();
@@ -88,6 +315,40 @@ let AppComponent = class AppComponent {
     }
     getAndValidate() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+=======
+    // docs = [
+    //   {
+    //     id: '1',
+    //     nomeDocumento: '',
+    //     validade: '',
+    //   },
+    //   {
+    //     id: '2',
+    //     nomeDocumento: '',
+    //     validade: '',
+    //   },
+    //   {
+    //     id: '3',
+    //     nomeDocumento: '',
+    //     validade: '',
+    //   },
+    //   {
+    //     id: '4',
+    //     nomeDocumento: '',
+    //     validade: '',
+    //   },
+    //   {
+    //     id: '5',
+    //     nomeDocumento: '',
+    //     validade: '',
+    //   },
+    // ];
+    constructor() {
+        this.getAndValidate();
+    }
+    getAndValidate() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+>>>>>>> 83c9b53 (Sync)
             // const store = await this.getStor();
             // const data = JSON.parse(store.value);
             // if (data[0].nomeDocumento === '') {
@@ -100,6 +361,7 @@ let AppComponent = class AppComponent {
             // }
         });
     }
+<<<<<<< HEAD
     present() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default().fire({
@@ -121,17 +383,27 @@ let AppComponent = class AppComponent {
     }
     getStor() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+=======
+    getStor() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+>>>>>>> 83c9b53 (Sync)
             return yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_2__.Storage.get({
                 key: 'FatherStorage',
             });
         });
     }
 };
+<<<<<<< HEAD
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.Platform }
 ];
 AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+=======
+AppComponent.ctorParameters = () => [];
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+>>>>>>> 83c9b53 (Sync)
         selector: 'app-root',
         template: _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
@@ -153,6 +425,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 8163);
 /* harmony import */ var _home_home_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home/home-routing.module */ 2003);
 /* harmony import */ var _home_home_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home/home.module */ 3467);
@@ -163,6 +436,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-routing.module */ 158);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ 7497);
+=======
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 8163);
+/* harmony import */ var _add_document_add_document_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add-document/add-document.module */ 5783);
+/* harmony import */ var _home_home_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home/home-routing.module */ 2003);
+/* harmony import */ var _home_home_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home/home.module */ 3467);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 1109);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ 8394);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 5485);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 5472);
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ 5041);
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-routing.module */ 158);
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ 7497);
+/* harmony import */ var _add_document_add_document_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./add-document/add-document-routing.module */ 683);
+
+
+>>>>>>> 83c9b53 (Sync)
 
 
 
@@ -175,6 +464,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppModule = class AppModule {
 };
+<<<<<<< HEAD
 AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent],
@@ -188,6 +478,23 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
         ],
         providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_9__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicRouteStrategy }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__.AppComponent],
+=======
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.NgModule)({
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__.AppComponent],
+        imports: [
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.BrowserModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonicModule.forRoot(),
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_4__.AppRoutingModule,
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__.BrowserAnimationsModule,
+            _home_home_module__WEBPACK_IMPORTED_MODULE_2__.HomePageModule,
+            _home_home_routing_module__WEBPACK_IMPORTED_MODULE_1__.HomePageRoutingModule,
+            _add_document_add_document_module__WEBPACK_IMPORTED_MODULE_0__.AddDocumentPageModule,
+            _add_document_add_document_routing_module__WEBPACK_IMPORTED_MODULE_5__.AddDocumentPageRoutingModule
+        ],
+        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_11__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonicRouteStrategy }],
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__.AppComponent],
+>>>>>>> 83c9b53 (Sync)
     })
 ], AppModule);
 
@@ -246,7 +553,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 8163);
 /* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ 8546);
+<<<<<<< HEAD
 /* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/input */ 2937);
+=======
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/input */ 2937);
+>>>>>>> 83c9b53 (Sync)
 /* harmony import */ var _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../shared/services/storage.service */ 1303);
 /* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/card */ 6794);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 1109);
@@ -254,18 +565,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 5472);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ 1777);
 /* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home.page */ 2267);
+<<<<<<< HEAD
 /* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/expansion */ 6027);
 /* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/datepicker */ 6455);
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/dialog */ 6346);
 /* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/select */ 2765);
 /* harmony import */ var mat_timepicker__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! mat-timepicker */ 3497);
+=======
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/expansion */ 6027);
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/datepicker */ 6455);
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/dialog */ 6346);
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/select */ 2765);
+>>>>>>> 83c9b53 (Sync)
 /* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home-routing.module */ 2003);
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ 2872);
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/storage */ 2879);
 /* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/form-field */ 7551);
 /* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/core */ 3946);
+<<<<<<< HEAD
 /* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/icon */ 495);
 
+=======
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/icon */ 495);
+>>>>>>> 83c9b53 (Sync)
 
 
 
@@ -300,6 +622,7 @@ HomePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
             _angular_material_form_field__WEBPACK_IMPORTED_MODULE_13__.MatFormFieldModule,
             _angular_material_core__WEBPACK_IMPORTED_MODULE_14__.MatNativeDateModule,
             _angular_material_select__WEBPACK_IMPORTED_MODULE_15__.MatSelectModule,
+<<<<<<< HEAD
             mat_timepicker__WEBPACK_IMPORTED_MODULE_16__.MatTimepickerModule,
             _angular_material_icon__WEBPACK_IMPORTED_MODULE_17__.MatIconModule,
             _angular_forms__WEBPACK_IMPORTED_MODULE_8__.ReactiveFormsModule,
@@ -309,6 +632,16 @@ HomePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
             _home_routing_module__WEBPACK_IMPORTED_MODULE_3__.HomePageRoutingModule,
         ],
         declarations: [_home_page__WEBPACK_IMPORTED_MODULE_2__.HomePage, _home_page__WEBPACK_IMPORTED_MODULE_2__.DialogContentExampleDialog, _home_page__WEBPACK_IMPORTED_MODULE_2__.InformationDialog],
+=======
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_16__.MatIconModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_8__.ReactiveFormsModule,
+            _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_17__.MatDatepickerModule,
+            _angular_material_input__WEBPACK_IMPORTED_MODULE_18__.MatInputModule,
+            _angular_material_expansion__WEBPACK_IMPORTED_MODULE_19__.MatExpansionModule,
+            _home_routing_module__WEBPACK_IMPORTED_MODULE_3__.HomePageRoutingModule,
+        ],
+        declarations: [_home_page__WEBPACK_IMPORTED_MODULE_2__.HomePage, _home_page__WEBPACK_IMPORTED_MODULE_2__.DialogContentExampleDialog],
+>>>>>>> 83c9b53 (Sync)
         providers: [_shared_services_storage_service__WEBPACK_IMPORTED_MODULE_1__.StorageService, _ionic_storage__WEBPACK_IMPORTED_MODULE_4__.Storage, _angular_common__WEBPACK_IMPORTED_MODULE_7__.DatePipe, _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_0__.LocalNotifications],
         schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -328,6 +661,7 @@ HomePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DialogContentExampleDialog": () => (/* binding */ DialogContentExampleDialog),
+<<<<<<< HEAD
 /* harmony export */   "HomePage": () => (/* binding */ HomePage),
 /* harmony export */   "InformationDialog": () => (/* binding */ InformationDialog)
 /* harmony export */ });
@@ -352,6 +686,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _capacitor_app__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @capacitor/app */ 8119);
 
 
+=======
+/* harmony export */   "HomePage": () => (/* binding */ HomePage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 8163);
+/* harmony import */ var _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home.page.html?ngResource */ 1670);
+/* harmony import */ var _home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page.scss?ngResource */ 8504);
+/* harmony import */ var _modal_dialog_content_example_dialog_html_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal/dialog-content-example-dialog.html?ngResource */ 6046);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/core */ 1109);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ 5485);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ 157);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ 8546);
+/* harmony import */ var _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @capacitor-community/admob */ 7283);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 5472);
+/* harmony import */ var _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/services/storage.service */ 1303);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ 2879);
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/dialog */ 6346);
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/core */ 3946);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common */ 8143);
+>>>>>>> 83c9b53 (Sync)
 
 
 
@@ -371,12 +725,20 @@ __webpack_require__.r(__webpack_exports__);
   LocalNotificationSchema,
 } from '@capacitor/local-notifications';*/
 
+<<<<<<< HEAD
 
 let HomePage = class HomePage {
     constructor(alertCtrl, storageService, platform, dialog, loadingController, dateAdapter, router, localNotifications, datePipe, storage, toastController) {
         this.alertCtrl = alertCtrl;
         this.storageService = storageService;
         this.platform = platform;
+=======
+let HomePage = class HomePage {
+    constructor(alertCtrl, storageService, plt, dialog, loadingController, dateAdapter, router, localNotifications, datePipe, storage, toastController, platform) {
+        this.alertCtrl = alertCtrl;
+        this.storageService = storageService;
+        this.plt = plt;
+>>>>>>> 83c9b53 (Sync)
         this.dialog = dialog;
         this.loadingController = loadingController;
         this.dateAdapter = dateAdapter;
@@ -385,15 +747,23 @@ let HomePage = class HomePage {
         this.datePipe = datePipe;
         this.storage = storage;
         this.toastController = toastController;
+<<<<<<< HEAD
         this.items = [];
         this.documentsList = [];
         this.notifyList = [];
         this.clicado = false;
+=======
+        this.platform = platform;
+        this.items = [];
+        this.documentsList = [];
+        this.notifyList = [];
+>>>>>>> 83c9b53 (Sync)
         this.visible = false;
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         this.newItem = {};
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         this.newNotify = {};
+<<<<<<< HEAD
         this.minDate = new Date();
         _capacitor_app__WEBPACK_IMPORTED_MODULE_10__.App.addListener('backButton', ({ canGoBack }) => {
             console.log(canGoBack);
@@ -406,11 +776,18 @@ let HomePage = class HomePage {
         });
         this.loadItems();
         _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_6__.AdMob.initialize({
+=======
+        this.plt.ready().then(() => {
+            this.loadItems();
+        });
+        _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__.AdMob.initialize({
+>>>>>>> 83c9b53 (Sync)
             requestTrackingAuthorization: true,
             initializeForTesting: false,
         });
     }
     ngOnInit() {
+<<<<<<< HEAD
         return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
             // this.plt.backButton.subscribeWithPriority(10, () => {
             //   App.exitApp();
@@ -528,6 +905,59 @@ let HomePage = class HomePage {
                 }
             }
         });
+=======
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+            this.dateAdapter.setLocale('pt');
+            yield this.storage.create();
+            this.banner();
+        });
+    }
+    populateType(data) {
+        console.log(data);
+        if (data !== undefined) {
+            this.visible = true;
+        }
+        else {
+            this.visible = false;
+        }
+    }
+    // CREATE
+    addItem(data) {
+        console.log(data);
+        this.newItem.modified = Date.now();
+        this.newItem.id = Date.now();
+        if (this.items === null) {
+            this.storageService.addItem(this.newItem).then((item) => {
+                // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+                this.newItem = {};
+                this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
+                this.visible = false;
+                this.loadItems(); // Or add it to the array directly
+            });
+        }
+        else {
+            if (this.items.length === 5) {
+                this.openMsgModal('error', 'Não é possível inserir mais que 10 itens', '...');
+            }
+            else {
+                if (this.newItem.nomeDocumento === undefined ||
+                    this.newItem.value === undefined ||
+                    this.newItem.nome === undefined) {
+                    this.openMsgModal('error', 'Insira corretamente os dados', '...');
+                }
+                else {
+                    this.storageService.addItem(this.newItem).then((item) => {
+                        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+                        this.newItem = {};
+                        this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
+                        this.scheduleNotification(data);
+                        this.loadItems(); // Or add it to the array directly
+                        this.visible = false;
+                    });
+                }
+            }
+        }
+>>>>>>> 83c9b53 (Sync)
     }
     console() {
         console.log(this.items[0].nome);
@@ -541,15 +971,21 @@ let HomePage = class HomePage {
             this.items = items;
         });
         this.storageService.getNotify().then((data) => {
+<<<<<<< HEAD
             this.notifyList = data;
             if (data === null) {
                 this.openInformationDialog();
             }
+=======
+            console.log(data);
+            this.notifyList = data;
+>>>>>>> 83c9b53 (Sync)
         });
     }
     alert() {
         this.openMsgModal('error', 'Infelizmente você não tem permissões', '...');
     }
+<<<<<<< HEAD
     openInformationDialog() {
         const dialogRef = this.dialog.open(InformationDialog, {
             width: '500px',
@@ -559,6 +995,8 @@ let HomePage = class HomePage {
             console.log(`Dialog result: ${result}`);
         });
     }
+=======
+>>>>>>> 83c9b53 (Sync)
     openDialog() {
         const dialogRef = this.dialog.open(DialogContentExampleDialog, {
             width: '250px',
@@ -593,7 +1031,11 @@ let HomePage = class HomePage {
         });
     }
     presentAlert(header, message) {
+<<<<<<< HEAD
         return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
+=======
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+>>>>>>> 83c9b53 (Sync)
             const alert = yield this.alertCtrl.create({
                 header,
                 message,
@@ -603,7 +1045,11 @@ let HomePage = class HomePage {
         });
     }
     doRefresh(event) {
+<<<<<<< HEAD
         return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
+=======
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+>>>>>>> 83c9b53 (Sync)
             const loading = yield this.loadingController.create({
                 cssClass: 'my-custom-class',
                 message: 'Validando...',
@@ -626,7 +1072,11 @@ let HomePage = class HomePage {
     }
     // Helper
     showToast(msg) {
+<<<<<<< HEAD
         return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
+=======
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+>>>>>>> 83c9b53 (Sync)
             const toast = yield this.toastController.create({
                 message: msg,
                 duration: 2000,
@@ -635,7 +1085,11 @@ let HomePage = class HomePage {
         });
     }
     scheduleBasic() {
+<<<<<<< HEAD
         return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
+=======
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
+>>>>>>> 83c9b53 (Sync)
             let data = this.items[0].value;
             data = this.datePipe.transform(Date.now(), 'dd');
             /*await LocalNotifications.schedule({
@@ -654,6 +1108,7 @@ let HomePage = class HomePage {
             });*/
         });
     }
+<<<<<<< HEAD
     scheduleNotification(data, afazer, tipoAtividade, semanalmente, hora) {
         if (semanalmente) {
             this.onlyWeeklyHourNotify(data, afazer, tipoAtividade);
@@ -676,10 +1131,32 @@ let HomePage = class HomePage {
             id: 2,
             title: 'AVISO! SOBRE: ' + tipoAtividade,
             text: 'FALTA POUCO TEMPO PARA: ' + afazer,
+=======
+    scheduleNotification(data) {
+        this.instantNotify();
+        // this.localNotifications.schedule({
+        //   id: 1,
+        //   title: 'Attention',
+        //   text: 'Simons Notification',
+        //   data: { mydata: 'My hidden message this is' },
+        //   trigger: { in: 5, unit: ELocalNotificationTriggerUnit.SECOND },
+        //   foreground: true, // Show the notification while app is open
+        // });
+        // Works as well!
+        const date = new Date(data);
+        console.log(new Date(date));
+        date.setHours(12, 0, 0); // Set hours, minutes and seconds
+        console.log(new Date(date));
+        this.localNotifications.schedule({
+            id: 2,
+            title: 'Seu Documento está prestes a vencer',
+            text: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+>>>>>>> 83c9b53 (Sync)
             data: { mydata: 'Confira logo!' },
             trigger: { at: new Date(date) },
         });
     }
+<<<<<<< HEAD
     // midDayNotify(data, afazer, tipoAtividade) {
     //   const date = new Date(data);
     //   date.setHours(12, 0, 0); // Set hours, minutes and seconds
@@ -706,6 +1183,14 @@ let HomePage = class HomePage {
             id: 1,
             title: 'IREMOS TE INFORMAR SOBRE: ' + tipoAtividade + ' NÃO SE PREOCUPE!',
             text: 'NÓS CUIDAREMOS DE TE LEMBRAR ISTO!',
+=======
+    instantNotify() {
+        this.localNotifications.schedule({
+            id: 1,
+            title: 'Iremos informar o vencimento do seu documento!',
+            text: 'Nós cuidaremos disto para você',
+            data: { mydata: 'Nós cuidaremos disto para você!' },
+>>>>>>> 83c9b53 (Sync)
             trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
         });
     }
@@ -729,6 +1214,7 @@ let HomePage = class HomePage {
     //     ],
     //   });
     // }
+<<<<<<< HEAD
     banner() {
         _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_6__.AdMob.addListener(_capacitor_community_admob__WEBPACK_IMPORTED_MODULE_6__.BannerAdPluginEvents.Loaded, () => {
             // Subscribe Banner Event Listener
@@ -749,12 +1235,17 @@ let HomePage = class HomePage {
     }
     openMsgModal(type, title, text) {
         sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_4___default().fire({
+=======
+    openMsgModal(type, title, text) {
+        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_3___default().fire({
+>>>>>>> 83c9b53 (Sync)
             heightAuto: false,
             title: title,
             text: text,
             icon: type,
         });
     }
+<<<<<<< HEAD
 };
 HomePage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_12__.AlertController },
@@ -774,13 +1265,56 @@ HomePage.propDecorators = {
 };
 HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_17__.Component)({
+=======
+    banner() {
+        _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__.AdMob.addListener(_capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__.BannerAdPluginEvents.Loaded, () => {
+            // Subscribe Banner Event Listener
+        });
+        _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__.AdMob.addListener(_capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__.BannerAdPluginEvents.SizeChanged, (size) => {
+            // Subscribe Change Banner Size
+        });
+        const options = {
+            adId: 'ca-app-pub-6905686321259168/3602267962',
+            //adId: 'ca-app-pub-3940256099942544/6300978111',
+            adSize: _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__.BannerAdSize.ADAPTIVE_BANNER,
+            position: _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__.BannerAdPosition.BOTTOM_CENTER,
+            margin: 0,
+            isTesting: true
+            // npa: true
+        };
+        _capacitor_community_admob__WEBPACK_IMPORTED_MODULE_5__.AdMob.showBanner(options);
+    }
+};
+HomePage.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.AlertController },
+    { type: _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_6__.StorageService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.Platform },
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__.MatDialog },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.LoadingController },
+    { type: _angular_material_core__WEBPACK_IMPORTED_MODULE_11__.DateAdapter },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_12__.Router },
+    { type: _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_4__.LocalNotifications },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_13__.DatePipe },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_7__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ToastController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.Platform }
+];
+HomePage.propDecorators = {
+    mylist: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_14__.ViewChild, args: ['mylist', { static: false },] }]
+};
+HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.Component)({
+>>>>>>> 83c9b53 (Sync)
         selector: 'app-home',
         template: _home_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_home_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], HomePage);
 
+<<<<<<< HEAD
 ;
+=======
+>>>>>>> 83c9b53 (Sync)
 let DialogContentExampleDialog = class DialogContentExampleDialog {
     constructor(dialogRef, data) {
         this.dialogRef = dialogRef;
@@ -788,16 +1322,25 @@ let DialogContentExampleDialog = class DialogContentExampleDialog {
     }
 };
 DialogContentExampleDialog.ctorParameters = () => [
+<<<<<<< HEAD
     { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_13__.MatDialogRef },
     { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.Inject, args: [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_13__.MAT_DIALOG_DATA,] }] }
 ];
 DialogContentExampleDialog = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_17__.Component)({
+=======
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__.MatDialogRef },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_14__.Inject, args: [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__.MAT_DIALOG_DATA,] }] }
+];
+DialogContentExampleDialog = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.Component)({
+>>>>>>> 83c9b53 (Sync)
         selector: 'dialog-content-example-dialog',
         template: _modal_dialog_content_example_dialog_html_ngResource__WEBPACK_IMPORTED_MODULE_2__,
     })
 ], DialogContentExampleDialog);
 
+<<<<<<< HEAD
 let InformationDialog = class InformationDialog {
     constructor(dialogRef, data) {
         this.dialogRef = dialogRef;
@@ -816,6 +1359,27 @@ InformationDialog = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
 ], InformationDialog);
 
 
+=======
+
+
+/***/ }),
+
+/***/ 1250:
+/*!****************************************!*\
+  !*** ./src/app/home/model/document.ts ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DocumentoStorage": () => (/* binding */ DocumentoStorage)
+/* harmony export */ });
+class DocumentoStorage {
+    constructor() { }
+}
+
+>>>>>>> 83c9b53 (Sync)
 
 /***/ }),
 
@@ -1225,6 +1789,20 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
+/***/ 1369:
+/*!****************************************************************!*\
+  !*** ./src/app/add-document/add-document.page.scss?ngResource ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = ":host {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFkZC1kb2N1bWVudC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtBQUNGIiwiZmlsZSI6ImFkZC1kb2N1bWVudC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGFsaWduLWl0ZW1zOiBmbGV4LXN0YXJ0O1xufVxuIl19 */";
+
+/***/ }),
+
+>>>>>>> 83c9b53 (Sync)
 /***/ 3169:
 /*!***********************************************!*\
   !*** ./src/app/app.component.scss?ngResource ***!
@@ -1243,7 +1821,22 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /***/ ((module) => {
 
 "use strict";
+<<<<<<< HEAD
 module.exports = "#container {\n  text-align: center;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n#container strong {\n  font-size: 20px;\n  line-height: 26px;\n}\n\n.new-background-color {\n  --background: var(--ion-color-primary);\n  border-bottom-left-radius: 40px;\n  border-bottom-right-radius: 40px;\n  text-align: center;\n  color: #fff;\n}\n\n.flex-container {\n  display: flex;\n  flex-wrap: wrap;\n  text-align: center;\n  justify-content: center;\n}\n\n#container p {\n  font-size: 16px;\n  line-height: 22px;\n  color: #8c8c8c;\n  margin: 0;\n}\n\n#container a {\n  text-decoration: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhvbWUucGFnZS5zY3NzIiwiLi4vLi4vLi4vLi4vLi4vLi4vLi4vLi4vTW9iaWxlJTIwRG9jdW1lbnRzL2NvbX5hcHBsZX5DbG91ZERvY3MvRG9jdW1lbnRzL2FwcGxpY2F0aW9ucy9tZUxlbWJyZS9zcmMvYXBwL2hvbWUvaG9tZS5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBQTtFQUVBLGtCQUFBO0VBQ0EsT0FBQTtFQUNBLFFBQUE7RUFDQSxRQUFBO0VBQ0EsMkJBQUE7QUNBRjs7QURLQTtFQUNFLGVBQUE7RUFDQSxpQkFBQTtBQ0ZGOztBRElBO0VBQ0Usc0NBQUE7RUFDQSwrQkFBQTtFQUNBLGdDQUFBO0VBQ0Esa0JBQUE7RUFDQSxXQUFBO0FDREY7O0FER0E7RUFDQyxhQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsdUJBQUE7QUNBRDs7QURFQTtFQUNFLGVBQUE7RUFDQSxpQkFBQTtFQUVBLGNBQUE7RUFFQSxTQUFBO0FDREY7O0FESUE7RUFDRSxxQkFBQTtBQ0RGIiwiZmlsZSI6ImhvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2NvbnRhaW5lciB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcblxuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICB0b3A6IDUwJTtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xufVxuLnZsIHtcblxufVxuI2NvbnRhaW5lciBzdHJvbmcge1xuICBmb250LXNpemU6IDIwcHg7XG4gIGxpbmUtaGVpZ2h0OiAyNnB4O1xufVxuLm5ldy1iYWNrZ3JvdW5kLWNvbG9yIHtcbiAgLS1iYWNrZ3JvdW5kOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDQwcHg7XG4gIGJvcmRlci1ib3R0b20tcmlnaHQtcmFkaXVzOiA0MHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiAjZmZmO1xufVxuLmZsZXgtY29udGFpbmVye1xuIGRpc3BsYXk6IGZsZXg7XG4gZmxleC13cmFwOiB3cmFwO1xuIHRleHQtYWxpZ246IGNlbnRlcjtcbiBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cbiNjb250YWluZXIgcCB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgbGluZS1oZWlnaHQ6IDIycHg7XG5cbiAgY29sb3I6ICM4YzhjOGM7XG5cbiAgbWFyZ2luOiAwO1xufVxuXG4jY29udGFpbmVyIGEge1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG4iLCIjY29udGFpbmVyIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICB0b3A6IDUwJTtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xufVxuXG4jY29udGFpbmVyIHN0cm9uZyB7XG4gIGZvbnQtc2l6ZTogMjBweDtcbiAgbGluZS1oZWlnaHQ6IDI2cHg7XG59XG5cbi5uZXctYmFja2dyb3VuZC1jb2xvciB7XG4gIC0tYmFja2dyb3VuZDogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiA0MHB4O1xuICBib3JkZXItYm90dG9tLXJpZ2h0LXJhZGl1czogNDBweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogI2ZmZjtcbn1cblxuLmZsZXgtY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4jY29udGFpbmVyIHAge1xuICBmb250LXNpemU6IDE2cHg7XG4gIGxpbmUtaGVpZ2h0OiAyMnB4O1xuICBjb2xvcjogIzhjOGM4YztcbiAgbWFyZ2luOiAwO1xufVxuXG4jY29udGFpbmVyIGEge1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59Il19 */";
+=======
+module.exports = "#container {\n  text-align: center;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n#container strong {\n  font-size: 20px;\n  line-height: 26px;\n}\n\n.new-background-color {\n  --background: var(--ion-color-primary);\n  border-bottom-left-radius: 40px;\n  border-bottom-right-radius: 40px;\n  text-align: center;\n  color: #fff;\n}\n\n.flex-container {\n  display: flex;\n  flex-wrap: wrap;\n  text-align: center;\n  justify-content: center;\n}\n\n#container p {\n  font-size: 16px;\n  line-height: 22px;\n  color: #8c8c8c;\n  margin: 0;\n}\n\n#container a {\n  text-decoration: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQUE7RUFFQSxrQkFBQTtFQUNBLE9BQUE7RUFDQSxRQUFBO0VBQ0EsUUFBQTtFQUNBLDJCQUFBO0FBQUY7O0FBR0E7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7QUFBRjs7QUFFQTtFQUNFLHNDQUFBO0VBQ0EsK0JBQUE7RUFDQSxnQ0FBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBQTtBQUNGOztBQUNBO0VBQ0MsYUFBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtFQUNBLHVCQUFBO0FBRUQ7O0FBQUE7RUFDRSxlQUFBO0VBQ0EsaUJBQUE7RUFFQSxjQUFBO0VBRUEsU0FBQTtBQUNGOztBQUVBO0VBQ0UscUJBQUE7QUFDRiIsImZpbGUiOiJob21lLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNjb250YWluZXIge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG5cbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgdG9wOiA1MCU7XG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtNTAlKTtcbn1cblxuI2NvbnRhaW5lciBzdHJvbmcge1xuICBmb250LXNpemU6IDIwcHg7XG4gIGxpbmUtaGVpZ2h0OiAyNnB4O1xufVxuLm5ldy1iYWNrZ3JvdW5kLWNvbG9yIHtcbiAgLS1iYWNrZ3JvdW5kOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG4gIGJvcmRlci1ib3R0b20tbGVmdC1yYWRpdXM6IDQwcHg7XG4gIGJvcmRlci1ib3R0b20tcmlnaHQtcmFkaXVzOiA0MHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiAjZmZmO1xufVxuLmZsZXgtY29udGFpbmVye1xuIGRpc3BsYXk6IGZsZXg7XG4gZmxleC13cmFwOiB3cmFwO1xuIHRleHQtYWxpZ246IGNlbnRlcjtcbiBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cbiNjb250YWluZXIgcCB7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgbGluZS1oZWlnaHQ6IDIycHg7XG5cbiAgY29sb3I6ICM4YzhjOGM7XG5cbiAgbWFyZ2luOiAwO1xufVxuXG4jY29udGFpbmVyIGEge1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG4iXX0= */";
+
+/***/ }),
+
+/***/ 4132:
+/*!****************************************************************!*\
+  !*** ./src/app/add-document/add-document.page.html?ngResource ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-content>\n  <div style=\"padding: 1em;\">\n    <mat-card style=\"padding: 1em;   border-left: 6px solid #3171e0;\n\">\n      <ion-row>\n        <ion-col>\n          <mat-form-field style=\"width: 100%;\" appearance=\"fill\">\n            <mat-label>Nome do documento</mat-label>\n            <input [(ngModel)]=\"documento\" matInput>\n          </mat-form-field>\n        </ion-col>\n\n        <ion-col>\n          <mat-form-field style=\"width: 100%;\" appearance=\"fill\">\n            <mat-label>Data de validade</mat-label>\n            <input [(ngModel)]=\"validade\" matInput>\n          </mat-form-field>\n        </ion-col>\n\n        <button mat-stroked-button color=\"primary\" style=\"width: 100%;\"\n          (click)=\"navigate('', documento, validade)\">Adicionar\n          documento</button>\n      </ion-row>\n    </mat-card>\n  </div>\n\n</ion-content>\n";
+>>>>>>> 83c9b53 (Sync)
 
 /***/ }),
 
@@ -1265,7 +1858,11 @@ module.exports = "<ion-router-outlet></ion-router-outlet>\n";
 /***/ ((module) => {
 
 "use strict";
+<<<<<<< HEAD
 module.exports = "<ion-content [fullscreen]=\"true\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <ion-toolbar class=\"new-background-color\">\n    <ion-title>\n      ME LEMBRE! </ion-title>\n  </ion-toolbar>\n  <!-- Documento Inserido -->\n  <div style=\"padding: 1em;\">\n    <mat-card>\n      <div (click)=\"openInformationDialog()\">\n      <ion-icon name=\"help-circle-outline\"></ion-icon>\n      </div>\n      <ion-row>\n      <ion-col size=\"10\">\n<mat-form-field style=\"width: 100%;\">\n  <mat-label>Selecione o tipo de lembrete</mat-label>\n  <mat-select   [(ngModel)]=\"newItem.nomeDocumento\" name=\"Qual Lembrete?\" >\n    <mat-option *ngFor=\"let doc of notifyList\" (click)=\"newItem.nomeDocumento !== undefined||null ? visible = true: visible = false; \" value=\"{{doc.nameNotify}}\">\n      {{doc.nameNotify}}\n    </mat-option>\n  </mat-select>\n</mat-form-field>\n      </ion-col>\n      <ion-col>\n        <ion-fab (click)=\"openDialog()\">\n          <ion-fab-button size=\"small\">\n            <ion-icon name=\"add\"></ion-icon>\n          </ion-fab-button>\n          </ion-fab>\n      </ion-col>\n      </ion-row>\n<div *ngIf=\"visible\" >\n    <ion-row>\n      <ion-col size=\" 12\">\n        <mat-form-field style=\"width: 100%;\">\n          <mat-label>A fazer:</mat-label>\n          <input [(ngModel)]=\"newItem.nome\" matInput required>\n        </mat-form-field>\n      </ion-col>\n    </ion-row>\n\n    <br>\n        <!-- <ion-row>\n          <ion-col size=\" 12\">\n  <ion-item style=\"background-color: white;\">\n    <ion-label>Repetir semanalmente?</ion-label>\n    <ion-toggle slot=\"end\"[(ngModel)]=\"newItem.weekly\" [checked]=\"false\"></ion-toggle>\n  </ion-item>          </ion-col>\n        </ion-row> -->\n\n\n    <ion-row>\n      <ion-col size=\"12\">\n    <mat-form-field style=\"width: 100%;\">\n      <mat-label>Selecione a data</mat-label>\n      <input matInput [(ngModel)]=\"newItem.value\"  [min]=\"minDate\" readonly=\"true\" [matDatepicker]=\"picker\" required>\n      <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n      <mat-datepicker showSeconds stepHour stepMinute  touchUi #picker></mat-datepicker>\n    </mat-form-field>\n    </ion-col>\n\n    </ion-row>\n    <br>\n    <ion-row>\n    <ion-col>\n    <div>\n      <mat-form-field style=\"width: 100%;\">\n        <mat-label>Qual horário?</mat-label>\n        <input matTimepicker #t1=\"matTimepicker\" #time1=\"ngModel\" [(ngModel)]=\"newItem.hour\"  [minDate]=\"minValue\" [maxDate]=\"maxValue\"\n          id=\"timepicker-example-1\" mode=\"24h\"  placeholder=\"Please select time...\" name=\"time-1\" required>\n        <mat-icon matSuffix (click)=\"t1.showDialog()\">access_time</mat-icon>\n        <mat-error *ngIf=\"time1.touched && time1.invalid\">Invalid Date</mat-error>\n      </mat-form-field>\n    </div>\n    </ion-col>\n    </ion-row>\n\n</div>\n  </mat-card>\n<br>\n    <div class=\"flex-container\" *ngIf=\"visible\" >\n      <button mat-raised-button\n        style=\"background-color: #3171e0; color: #fff; width: 80%; height: 50px; border-radius: 10px;\"\n        (click)=\"addItem(newItem.value,newItem.nome,newItem.nomeDocumento,newItem.weekly,newItem.hour); clicado = true; \">ADICIONAR LEMBRETE</button>\n    </div>\n    <!-- <ion-button expand=\" full\" (click)=\"addItem()\">Add Item!</ion-button> -->\n\n    <BR>\n    <!-- <div *ngIf=\"items.length !== 0\">\n      <h3 class=\"flex-container\">\n        MEUS DOCUMENTOS\n      </h3> -->\n    <mat-accordion *ngFor=\"let item of items\">\n      <mat-expansion-panel style=\"border-left: 6px solid #3171e0;\">\n        <mat-expansion-panel-header>\n          <mat-panel-title>\n            {{item.nome}}\n          </mat-panel-title>\n\n        </mat-expansion-panel-header>\n        <mat-card style=\"padding: 1em ;border-right: 6px solid #3171e0;\">\n          <h3> <b>Tipo de lembrete:</b> {{item.nomeDocumento}}\n          </h3>\n          <h3> <b>Validade:</b> {{item.value | date:'dd/MM/yyyy'}}\n          </h3>\n          <br>\n          <div class=\"flex-container\">\n            <button mat-raised-button color=\"warn\" style=\"width: 80%;\" (click)=\"deleteItem(item)\">\n              EXCLUIR</button>\n          </div>\n        </mat-card>\n      </mat-expansion-panel>\n      <br>\n\n    </mat-accordion>\n    <!-- </div> -->\n\n\n\n    <br><br>\n    <br>\n    <img src=\"../../assets/icon.png\">\n\n  </div>\n</ion-content>\n";
+=======
+module.exports = "<ion-content [fullscreen]=\"true\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <ion-toolbar class=\"new-background-color\">\n    <ion-title>\n      ME LEMBRE! </ion-title>\n  </ion-toolbar>\n  <!-- Documento Inserido -->\n  <div style=\"padding: 1em;\">\n    <mat-card>\n    <ion-row>\n      <ion-col size=\"10\">\n<mat-form-field style=\"width: 100%;\">\n  <mat-label>Selecione o tipo de lembrete</mat-label>\n  <mat-select  [(ngModel)]=\"newItem.nomeDocumento\" name=\"Qual Lembrete?\">\n    <mat-option *ngFor=\"let doc of notifyList\" (onSelectionChange)=\"populateType(doc.nameNotify)\" value=\"{{doc.nameNotify}}\">\n      {{doc.nameNotify}}\n    </mat-option>\n  </mat-select>\n</mat-form-field>\n\n      </ion-col>\n      <ion-col>\n        <ion-fab (click)=\"openDialog()\">\n          <ion-fab-button size=\"small\">\n            <ion-icon name=\"add\"></ion-icon>\n          </ion-fab-button>\n          </ion-fab>\n      </ion-col>\n      </ion-row>\n<div *ngIf=\"visible\" >\n    <ion-row>\n      <ion-col size=\" 12\">\n        <mat-form-field style=\"width: 100%;\">\n          <mat-label>A fazer:</mat-label>\n          <input [(ngModel)]=\"newItem.nome\" matInput>\n        </mat-form-field>\n      </ion-col>\n    </ion-row>\n\n    <br>\n    <ion-row>\n      <ion-col size=\" 12\">\n    <mat-form-field style=\"width: 100%;\">\n      <mat-label>Selecione a data</mat-label>\n      <input matInput [(ngModel)]=\"newItem.value\" readonly=\"true\" [matDatepicker]=\"picker\">\n      <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n      <mat-datepicker #picker></mat-datepicker>\n    </mat-form-field>\n    </ion-col>\n    </ion-row>\n    <br>\n</div>\n  </mat-card>\n<br>\n    <div class=\"flex-container\" *ngIf=\"visible\" >\n      <button mat-raised-button\n        style=\"background-color: #3171e0; color: #fff; width: 80%; height: 50px; border-radius: 10px;\"\n        (click)=\"addItem(newItem.value)\">ADICIONAR LEMBRETE</button>\n    </div>\n    <!-- <ion-button expand=\" full\" (click)=\"addItem()\">Add Item!</ion-button> -->\n\n    <BR>\n    <!-- <div *ngIf=\"items.length !== 0\">\n      <h3 class=\"flex-container\">\n        MEUS DOCUMENTOS\n      </h3> -->\n    <mat-accordion *ngFor=\"let item of items\">\n      <mat-expansion-panel style=\"border-left: 6px solid #3171e0;\">\n        <mat-expansion-panel-header>\n          <mat-panel-title>\n            {{item.nome}}\n          </mat-panel-title>\n\n        </mat-expansion-panel-header>\n        <mat-card style=\"padding: 1em ;border-right: 6px solid #3171e0;\">\n          <h3> <b>Tipo de lembrete:</b> {{item.nomeDocumento}}\n          </h3>\n          <h3> <b>Validade:</b> {{item.value | date:'dd/MM/yyyy'}}\n          </h3>\n          <br>\n          <div class=\"flex-container\">\n            <button mat-raised-button color=\"warn\" style=\"width: 80%;\" (click)=\"deleteItem(item)\">\n              EXCLUIR</button>\n          </div>\n        </mat-card>\n      </mat-expansion-panel>\n      <br>\n\n    </mat-accordion>\n    <!-- </div> -->\n\n\n\n    <br><br>\n    <br>\n    <img src=\"../../assets/icon.png\">\n\n  </div>\n</ion-content>\n";
+>>>>>>> 83c9b53 (Sync)
 
 /***/ }),
 
@@ -1278,6 +1875,7 @@ module.exports = "<ion-content [fullscreen]=\"true\">\n  <ion-refresher slot=\"f
 "use strict";
 module.exports = "<ion-row>\n  <ion-col size=\" 12\">\n    <mat-form-field style=\"width: 100%;\">\n      <mat-label>Escreva o tipo do lembrete:</mat-label>\n      <input matInput [(ngModel)]=\"data.name\">\n    </mat-form-field>\n  </ion-col>\n</ion-row>\n  <div class=\"flex-container\">\n    <button mat-raised-button\n     [mat-dialog-close]=\"data.name\" style=\"background-color: #3171e0; color: #fff; width: 100%; height: 50px; border-radius: 10px;\"\n      >ADICIONAR LEMBRETE</button>\n  </div>\n";
 
+<<<<<<< HEAD
 /***/ }),
 
 /***/ 7798:
@@ -1289,6 +1887,8 @@ module.exports = "<ion-row>\n  <ion-col size=\" 12\">\n    <mat-form-field style
 "use strict";
 module.exports = "<div>\n  <mat-card>\n        <div style=\"display: flex;\n                  flex-wrap: wrap;\n\n                  text-align: center;\n                  justify-content: center;\">\n <h3>Grupo de notificações</h3></div>\n        <ion-fab-button disabled=\"true\" size=\"small\">\n          <ion-icon name=\"add\"></ion-icon>\n        </ion-fab-button>\n    <br>\n<div class=\"container\">\n      <h4>Clique neste botão para adicionar um grupo para notificações exemplo: Documentos, Atividades do trabalho e etc</h4>\n</div>\n    </mat-card>\n\n<!-- <ion-row>\n  <ion-col size=\"2\">\n\n    </ion-col>\n    <ion-col size=\"1\">\n      <div style=\"display: flex;\n flex-wrap: wrap;\n text-align: center;\n justify-content: center;\">\n      <div style=\"border-left: 2px solid rgb(31, 240, 236);\n  height: 50px;\"></div>\n  </div>\n</ion-col>\n    <ion-col size=\"9\">\n      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat atque facilis eveniet nemo inventore nulla nostrum repudiandae, ullam eligendi, debitis porro voluptate commodi. Accusantium in eligendi repudiandae, quae autem sapiente.\n    </ion-col>\n</ion-row> -->\n</div>\n<hr style=\"width: 300px;border-left: 10px solid rgb(0, 14, 14);\" />\n";
 
+=======
+>>>>>>> 83c9b53 (Sync)
 /***/ })
 
 },
