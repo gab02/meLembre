@@ -10,7 +10,7 @@ import {
   ILocalNotification,
 } from '@ionic-native/local-notifications/ngx';
 
-// import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
+import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize, AdOptions, AdLoadInfo, InterstitialAdPluginEvents } from '@capacitor-community/admob';
 
 
 
@@ -33,6 +33,7 @@ import { DateAdapter } from '@angular/material/core';
 } from '@capacitor/local-notifications';*/
 import { DatePipe } from '@angular/common';
 import { App } from '@capacitor/app';
+import { async } from '@angular/core/testing';
 
 export interface DialogData {
   animal: string;
@@ -80,11 +81,11 @@ export class HomePage implements OnInit {
       this.loadItems();
     });
 
-    // AdMob.initialize({
-    //   requestTrackingAuthorization: true,
+    AdMob.initialize({
+      requestTrackingAuthorization: true,
 
-    //   initializeForTesting: false,
-    // });
+      initializeForTesting: false,
+    });
   }
   async ngOnInit(): Promise<void> {
     // this.plt.backButton.subscribeWithPriority(10, () => {
@@ -93,7 +94,7 @@ export class HomePage implements OnInit {
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
 
-    // this.banner();
+    this.banner();
   }
   populateType(data) {
     console.log(data);
@@ -121,7 +122,7 @@ export class HomePage implements OnInit {
     });
   }
   // CREATE
-  addItem(data, afazer, tipoAtividade, semanalmente, hora) {
+  async addItem(data, afazer, tipoAtividade, semanalmente, hora) {
     const hor1 = this.datePipe.transform(hora, 'HH');
 
     const hor2 = this.datePipe.transform(hora, 'mm');
@@ -153,37 +154,43 @@ export class HomePage implements OnInit {
         this.loadItems(); // Or add it to the array directly
       });
     } else {
-      if (this.items.length === 5) {
-        this.openMsgModal(
-          'error',
-          'Não é possível inserir mais que 10 itens',
-          '...'
-        );
-      } else {
-        if (
-          data === undefined ||
-          afazer === undefined ||
-          tipoAtividade === undefined
-        ) {
-          this.openMsgModal('error', 'Insira corretamente os dados', '...');
-        } else {
-          this.storageService.addItem(this.newItem).then((item) => {
-            // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-            this.newItem = <Item>{};
-            this.visible = false;
-            this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
-            this.scheduleNotification(
-              date,
-              afazer,
-              tipoAtividade,
-              semanalmente,
-              hora
-            );
+      if (this.items.length % 5 == 0) {
+        AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
+          // Subscribe prepared interstitial
+        });
 
-            this.loadItems(); // Or add it to the array directly
-          });
-        }
+        const options: AdOptions = {
+          adId: 'ca-app-pub-6905686321259168/5330423192',
+          isTesting: true
+          // npa: true
+        };
+        await AdMob.prepareInterstitial(options);
+        await AdMob.showInterstitial();
       }
+      if (
+        data === undefined ||
+        afazer === undefined ||
+        tipoAtividade === undefined
+      ) {
+        this.openMsgModal('error', 'Insira corretamente os dados', '...');
+      } else {
+        this.storageService.addItem(this.newItem).then((item) => {
+          // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+          this.newItem = <Item>{};
+          this.visible = false;
+          this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
+          this.scheduleNotification(
+            date,
+            afazer,
+            tipoAtividade,
+            semanalmente,
+            hora
+          );
+
+          this.loadItems(); // Or add it to the array directly
+        });
+      }
+
     }
   }
   console() {
@@ -322,7 +329,7 @@ export class HomePage implements OnInit {
       this.atHourNotify(data, afazer, tipoAtividade, hora);
     }
   }
-  onlyWeeklyHourNotify(data, afazer, tipoAtividade) {}
+  onlyWeeklyHourNotify(data, afazer, tipoAtividade) { }
 
   // diaryHourNotify(data, afazer, tipoAtividade) {}
 
@@ -397,26 +404,28 @@ export class HomePage implements OnInit {
     });
   }
 
-  // banner() {
-  //     AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
-  //       // Subscribe Banner Event Listener
-  //     });
+  banner() {
+    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
+      // Subscribe Banner Event Listener
+    });
 
-  //     AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
-  //       // Subscribe Change Banner Size
-  //     });
+    AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
+      // Subscribe Change Banner Size
+    });
 
-  //     const options: BannerAdOptions = {
-  //       adId: 'ca-app-pub-6905686321259168/3602267962',
-  //       //adId: 'ca-app-pub-3940256099942544/6300978111',
-  //       adSize: BannerAdSize.ADAPTIVE_BANNER,
-  //       position: BannerAdPosition.BOTTOM_CENTER,
-  //       margin: 0,
-  //       isTesting: true
-  //       // npa: true
-  //     };
-  //     AdMob.showBanner(options);
-  // }
+    const options: BannerAdOptions = {
+      adId: 'ca-app-pub-6905686321259168/3602267962',
+      //adId: 'ca-app-pub-3940256099942544/6300978111',
+      adSize: BannerAdSize.ADAPTIVE_BANNER,
+      position: BannerAdPosition.BOTTOM_CENTER,
+      margin: 0,
+      isTesting: true
+      // npa: true
+    };
+    AdMob.showBanner(options);
+  }
+
+  
 }
 
 ;
@@ -429,7 +438,7 @@ export class DialogContentExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogContentExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
+  ) { }
 }
 @Component({
   selector: 'information-dialog',
@@ -439,5 +448,5 @@ export class InformationDialog {
   constructor(
     public dialogRef: MatDialogRef<InformationDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
+  ) { }
 }
