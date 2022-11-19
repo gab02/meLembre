@@ -1,5 +1,5 @@
 {
-  "name": "Me Lembre",
+  "name": "MeLembre",
   "version": "0.0.2",
   "author": "Software2you",
   "homepage": "https://software2you.com/",
@@ -10,10 +10,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "resources": "cordova-res ios && cordova-res android --icon-foreground-trim && node scripts/resources.js"
-  },
+      "resources": "capacitor-resources -p android,ios"
+    },
   "private": true,
   "dependencies": {
+    "@angular-eslint/eslint-plugin": "^14.3.0",
     "@angular-material-components/datetime-picker": "^8.0.0",
     "@angular/animations": "^14.0.0",
     "@angular/cdk": "^14.1.1",
@@ -35,7 +36,7 @@
     "@capacitor/ios": "^4.4.0",
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/local-notifications": "^4.1.2",
-    "@capacitor/splash-screen": "^4.1.1",
+    "@capacitor/splash-screen": "^1.4.0",
     "@capacitor/status-bar": "4.0.1",
     "@capacitor/storage": "^1.2.5",
     "@ionic-native/core": "^5.36.0",
@@ -57,7 +58,6 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.0",
     "@angular-eslint/builder": "~13.0.1",
-    "@angular-eslint/eslint-plugin": "~13.0.1",
     "@angular-eslint/eslint-plugin-template": "~13.0.1",
     "@angular-eslint/template-parser": "~13.0.1",
     "@angular/cli": "^14.0.0",

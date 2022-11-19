@@ -10,10 +10,6 @@ import {
   ILocalNotification,
 } from '@ionic-native/local-notifications/ngx';
 
-import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize, AdOptions, AdLoadInfo, InterstitialAdPluginEvents } from '@capacitor-community/admob';
-
-
-
 import {
   AlertController,
   IonList,
@@ -48,6 +44,7 @@ export class HomePage implements OnInit {
   items: Item[] = [];
   documentsList: any[] = [];
   notifyList: NotifyName[] = [];
+  clicado = false;
   visible = false;
   nameRemember;
   animal: string;
@@ -64,7 +61,7 @@ export class HomePage implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     private storageService: StorageService,
-    private plt: Platform,
+    private platform: Platform,
     public dialog: MatDialog,
     public loadingController: LoadingController,
     private dateAdapter: DateAdapter<any>,
@@ -74,18 +71,15 @@ export class HomePage implements OnInit {
     private storage: Storage,
     private toastController: ToastController
   ) {
-    // this.plt.backButton.subscribeWithPriority(10, () => {
-    //   App.exitApp();
-    // });
-    this.plt.ready().then(() => {
-      this.loadItems();
+    App.addListener('backButton', ({ canGoBack }) => {
+      console.log(canGoBack);
+      if (canGoBack) {
+        this.present();
+      } else {
+        this.present();
+      }
     });
-
-    AdMob.initialize({
-      requestTrackingAuthorization: true,
-
-      initializeForTesting: false,
-    });
+    this.loadItems();
   }
   async ngOnInit(): Promise<void> {
     // this.plt.backButton.subscribeWithPriority(10, () => {
@@ -93,17 +87,8 @@ export class HomePage implements OnInit {
     // });
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
+  }
 
-    this.banner();
-  }
-  populateType(data) {
-    console.log(data);
-    if (data !== undefined) {
-      this.visible = true;
-    } else {
-      this.visible = false;
-    }
-  }
   async present() {
     Swal.fire({
       heightAuto: false,
@@ -149,36 +134,24 @@ export class HomePage implements OnInit {
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         this.newItem = <Item>{};
         this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
-        this.visible = false;
-
         this.loadItems(); // Or add it to the array directly
       });
     } else {
-      if (this.items.length % 5 == 0) {
-        AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
-          // Subscribe prepared interstitial
-        });
-
-        const options: AdOptions = {
-          adId: 'ca-app-pub-6905686321259168/5330423192',
-          isTesting: true
-          // npa: true
-        };
-        await AdMob.prepareInterstitial(options);
-        await AdMob.showInterstitial();
-      }
       if (
         data === undefined ||
         afazer === undefined ||
-        tipoAtividade === undefined
+        tipoAtividade === undefined||
+         hora === undefined
+
       ) {
         this.openMsgModal('error', 'Insira corretamente os dados', '...');
       } else {
+this.visible = false;
         this.storageService.addItem(this.newItem).then((item) => {
           // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
           this.newItem = <Item>{};
-          this.visible = false;
           this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
+
           this.scheduleNotification(
             date,
             afazer,
@@ -190,7 +163,6 @@ export class HomePage implements OnInit {
           this.loadItems(); // Or add it to the array directly
         });
       }
-
     }
   }
   console() {
@@ -329,7 +301,7 @@ export class HomePage implements OnInit {
       this.atHourNotify(data, afazer, tipoAtividade, hora);
     }
   }
-  onlyWeeklyHourNotify(data, afazer, tipoAtividade) { }
+  onlyWeeklyHourNotify(data, afazer, tipoAtividade) {}
 
   // diaryHourNotify(data, afazer, tipoAtividade) {}
 
@@ -403,29 +375,6 @@ export class HomePage implements OnInit {
       icon: type,
     });
   }
-
-  banner() {
-    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
-      // Subscribe Banner Event Listener
-    });
-
-    AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
-      // Subscribe Change Banner Size
-    });
-
-    const options: BannerAdOptions = {
-      adId: 'ca-app-pub-6905686321259168/3602267962',
-      //adId: 'ca-app-pub-3940256099942544/6300978111',
-      adSize: BannerAdSize.ADAPTIVE_BANNER,
-      position: BannerAdPosition.BOTTOM_CENTER,
-      margin: 0,
-      isTesting: true
-      // npa: true
-    };
-    AdMob.showBanner(options);
-  }
-
-  
 }
 
 ;

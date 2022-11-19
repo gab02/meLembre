@@ -11,15 +11,11 @@ import { App } from '@capacitor/app';
 })
 export class AppComponent implements OnInit {
   constructor(private platform: Platform) {
-  this.platform.backButton.subscribeWithPriority(10, () => {
-    App.exitApp();
-  });
+
     this.getAndValidate();
   }
 ngOnInit(): void {
-     this.platform.backButton.subscribeWithPriority(10, () => {
-       App.exitApp();
-     });
+
 }
   async getAndValidate() {
     // const store = await this.getStor();
