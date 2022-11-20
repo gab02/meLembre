@@ -10,6 +10,8 @@ import {
   ILocalNotification,
 } from '@ionic-native/local-notifications/ngx';
 
+import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize, AdOptions, AdLoadInfo, InterstitialAdPluginEvents } from '@capacitor-community/admob';
+
 import {
   AlertController,
   IonList,
@@ -80,6 +82,10 @@ export class HomePage implements OnInit {
       }
     });
     this.loadItems();
+    AdMob.initialize({
+      requestTrackingAuthorization: true,
+      initializeForTesting: false,
+    });
   }
   async ngOnInit(): Promise<void> {
     // this.plt.backButton.subscribeWithPriority(10, () => {
@@ -87,6 +93,7 @@ export class HomePage implements OnInit {
     // });
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
+    this.banner();
   }
 
   async present() {
@@ -137,6 +144,19 @@ export class HomePage implements OnInit {
         this.loadItems(); // Or add it to the array directly
       });
     } else {
+      if (this.items.length % 5 == 0) {
+        AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
+          // Subscribe prepared interstitial
+        });
+
+        const options: AdOptions = {
+          adId: 'ca-app-pub-6905686321259168/5330423192',
+          isTesting: true
+          // npa: true
+        };
+        await AdMob.prepareInterstitial(options);
+        await AdMob.showInterstitial();
+      }
       if (
         data === undefined ||
         afazer === undefined ||
@@ -367,6 +387,27 @@ this.visible = false;
   //     ],
   //   });
   // }
+
+  banner() {
+    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
+      // Subscribe Banner Event Listener
+    });
+
+    AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
+      // Subscribe Change Banner Size
+    });
+
+    const options: BannerAdOptions = {
+      adId: 'ca-app-pub-6905686321259168/3602267962',
+      //adId: 'ca-app-pub-3940256099942544/6300978111',
+      adSize: BannerAdSize.ADAPTIVE_BANNER,
+      position: BannerAdPosition.BOTTOM_CENTER,
+      margin: 0,
+      isTesting: true
+      // npa: true
+    };
+    AdMob.showBanner(options);
+  }
   openMsgModal(type, title, text): void {
     Swal.fire({
       heightAuto: false,
