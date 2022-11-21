@@ -1,11 +1,22 @@
 {
 	"appId": "br.melembre.software2you",
-	"appName": "meLembre",
+	"appName": "Me Lembre",
 	"webDir": "www",
 	"bundledWebRuntime": false,
 	"plugins": {
 		"SplashScreen": {
-			"backgroundColor": "#3171e0"
+			"launchShowDuration": 3000,
+			"launchAutoHide": true,
+			"backgroundColor": "#ffffff",
+			"androidSplashResourceName": "splash",
+			"androidScaleType": "CENTER_CROP"
+		},
+		"PushNotifications": {
+			"presentationOptions": [
+				"badge",
+				"sound",
+				"alert"
+			]
 		}
 	}
 }

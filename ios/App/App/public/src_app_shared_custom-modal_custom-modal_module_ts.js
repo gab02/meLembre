@@ -141,7 +141,7 @@ CustomModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
   \***********************************************************************/
 /***/ ((module) => {
 
-module.exports = "body {\n  background: rgba(0, 0, 0, 0);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1tb2RhbC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSw0QkFBQTtBQUNKIiwiZmlsZSI6ImN1c3RvbS1tb2RhbC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDApO1xufVxuIl19 */";
+module.exports = "body {\n  background: rgba(0, 0, 0, 0);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbS1tb2RhbC5wYWdlLnNjc3MiLCIuLi8uLi8uLi8uLi8uLi8uLi8uLi8uLi8uLi9Nb2JpbGUlMjBEb2N1bWVudHMvY29tfmFwcGxlfkNsb3VkRG9jcy9Eb2N1bWVudHMvYXBwbGljYXRpb25zL21lTGVtYnJlL3NyYy9hcHAvc2hhcmVkL2N1c3RvbS1tb2RhbC9jdXN0b20tbW9kYWwucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNEJBQUE7QUNDSiIsImZpbGUiOiJjdXN0b20tbW9kYWwucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gICAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwKTtcbn1cbiIsImJvZHkge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDApO1xufSJdfQ== */";
 
 /***/ }),
 
@@ -151,7 +151,7 @@ module.exports = "body {\n  background: rgba(0, 0, 0, 0);\n}\n/*# sourceMappingU
   \***********************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div>\r\n  <ion-card class=\"main-border\">\r\n    <ion-card-header color=\"primary\" class=\"text-center\"\r\n      [ngClass]=\"{'ion-color-primary': type === 'success' || type === null, 'ion-color-warning': type === 'warning' || type === null, 'ion-color-danger': type === 'error'}\">\r\n      <i class=\"fas fa-3x\"\r\n        [ngClass]=\"{'fa-check-circle': type === 'success' || type === null, 'fa-times-circle': type === 'error', 'fa-exclamation-circle': type === 'warning' }\"></i>\r\n    </ion-card-header>\r\n\r\n    <ion-card-content>\r\n      <div class=\"pt-4 text-center\">\r\n        <h2 class=\"text-large\"><strong>{{title}}</strong></h2>\r\n        <p>\r\n          {{text}}\r\n        </p>\r\n      </div>\r\n      <hr>\r\n      <div class=\"text-center\">\r\n        <div clsas=\"text-large\" (click)=\"close()\">Ok</div>\r\n      </div>\r\n    </ion-card-content>\r\n  </ion-card>\r\n</div>\r\n";
+module.exports = "<div>\n  <ion-card class=\"main-border\">\n    <ion-card-header color=\"primary\" class=\"text-center\"\n      [ngClass]=\"{'ion-color-primary': type === 'success' || type === null, 'ion-color-warning': type === 'warning' || type === null, 'ion-color-danger': type === 'error'}\">\n      <i class=\"fas fa-3x\"\n        [ngClass]=\"{'fa-check-circle': type === 'success' || type === null, 'fa-times-circle': type === 'error', 'fa-exclamation-circle': type === 'warning' }\"></i>\n    </ion-card-header>\n\n    <ion-card-content>\n      <div class=\"pt-4 text-center\">\n        <h2 class=\"text-large\"><strong>{{title}}</strong></h2>\n        <p>\n          {{text}}\n        </p>\n      </div>\n      <hr>\n      <div class=\"text-center\">\n        <div clsas=\"text-large\" (click)=\"close()\">Ok</div>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</div>\n";
 
 /***/ })
 
