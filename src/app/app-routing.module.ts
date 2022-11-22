@@ -24,13 +24,7 @@ const routes: Routes = [
         (m) => m.CustomModalPageModule
       ),
   },
-  {
-    path: 'add-document',
-    loadChildren: () =>
-      import('./add-document/add-document.module').then(
-        (m) => m.AddDocumentPageModule
-      ),
-  },
+
 ];
 
 @NgModule({

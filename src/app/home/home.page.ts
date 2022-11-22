@@ -10,9 +10,13 @@ import {
   ILocalNotification,
 } from '@ionic-native/local-notifications/ngx';
 
-import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
-
-
+import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize, AdOptions, AdLoadInfo, InterstitialAdPluginEvents } from '@capacitor-community/admob';
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from '@capacitor/push-notifications';
 
 import {
   AlertController,
@@ -32,6 +36,8 @@ import { DateAdapter } from '@angular/material/core';
   LocalNotificationSchema,
 } from '@capacitor/local-notifications';*/
 import { DatePipe } from '@angular/common';
+import { App } from '@capacitor/app';
+import { async } from '@angular/core/testing';
 
 export interface DialogData {
   animal: string;
@@ -46,22 +52,24 @@ export class HomePage implements OnInit {
   items: Item[] = [];
   documentsList: any[] = [];
   notifyList: NotifyName[] = [];
+  clicado = false;
   visible = false;
   nameRemember;
   animal: string;
   name: string;
-
+  minValue: Date;
+  maxValue: Date;
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newItem: Item = <Item>{};
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newNotify: NotifyName = <NotifyName>{};
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('mylist', { static: false }) mylist: IonList;
-
+  minDate = new Date();
   constructor(
     private alertCtrl: AlertController,
     private storageService: StorageService,
-    private plt: Platform,
+    private platform: Platform,
     public dialog: MatDialog,
     public loadingController: LoadingController,
     private dateAdapter: DateAdapter<any>,
@@ -69,38 +77,116 @@ export class HomePage implements OnInit {
     private localNotifications: LocalNotifications,
     private datePipe: DatePipe,
     private storage: Storage,
-    private toastController: ToastController,
-
-    private platform: Platform
+    private toastController: ToastController
   ) {
-    this.plt.ready().then(() => {
-      this.loadItems();
+    App.addListener('backButton', ({ canGoBack }) => {
+      console.log(canGoBack);
+      if (canGoBack) {
+        this.present();
+      } else {
+        this.present();
+      }
     });
+    this.loadItems();
     AdMob.initialize({
       requestTrackingAuthorization: true,
-
       initializeForTesting: false,
     });
-
   }
   async ngOnInit(): Promise<void> {
-  
+    // this.plt.backButton.subscribeWithPriority(10, () => {
+    //   App.exitApp();
+    // });
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
- 
     this.banner();
 
+    this.InitNotification();
   }
-  populateType(data) {
-    console.log(data);
-    if (data !== undefined) {
-      this.visible = true;
-    } else {
-      this.visible = false;
-    }
+
+  InitNotification() {
+        console.log('Initializing HomePage');
+
+    // Request permission to use push notifications
+    // iOS will prompt user and return if they granted permission or not
+    // Android will just grant without prompting
+    PushNotifications.requestPermissions().then(result => {
+      if (result.receive === 'granted') {
+        // Register with Apple / Google to receive push via APNS/FCM
+        PushNotifications.register();
+      } else {
+        // Show some error
+      }
+    });
+
+    // On success, we should be able to receive notifications
+    PushNotifications.addListener('registration',
+      (token: Token) => {
+        //alert('Push registration success, token: ' + token.value);
+        console.log(token.value);
+      }
+    );
+
+    // Some issue with our setup and push will not work
+    PushNotifications.addListener('registrationError',
+      (error: any) => {
+        alert('Error on registration: ' + JSON.stringify(error));
+      }
+    );
+
+    // Show us the notification payload if the app is open on our device
+    PushNotifications.addListener('pushNotificationReceived',
+      (notification: PushNotificationSchema) => {
+        //this.presentAlert(notification.title, notification.body);
+        //alert('Push received: ' + JSON.stringify(notification));
+      }
+    );
+
+    // Method called when tapping on a notification
+    PushNotifications.addListener('pushNotificationActionPerformed',
+      (notification: ActionPerformed) => {
+        //this.presentAlert(notification.title, notification.body);
+        //alert('Push action performed: ' + JSON.stringify(notification));
+      }
+    );
+  }
+
+  async present() {
+    Swal.fire({
+      heightAuto: false,
+      title: 'Você tem certeza?',
+      text: 'Você deseja mesmo sair da aplicação?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00c1af',
+      cancelButtonText: 'Não',
+      cancelButtonColor: '#f1b080',
+      confirmButtonText: 'Sim, Tenho certeza!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        App.exitApp();
+      }
+    });
   }
   // CREATE
-  addItem(data) {
+  async addItem(data, afazer, tipoAtividade, semanalmente, hora) {
+    const hor1 = this.datePipe.transform(hora, 'HH');
+
+    const hor2 = this.datePipe.transform(hora, 'mm');
+
+    const hor3 = this.datePipe.transform(hora, 'ss');
+
+    const n1: number = +hor1;
+    const n2: number = +hor2;
+    const n3: number = +hor3;
+
+    const date = new Date(data);
+    date.setHours(n1, n2, n3); // Set hours, minutes and seconds
+    console.log(date);
+    console.log(afazer);
+    console.log(tipoAtividade);
+    console.log(hora);
+
     console.log(data);
     this.newItem.modified = Date.now();
     this.newItem.id = Date.now();
@@ -110,36 +196,47 @@ export class HomePage implements OnInit {
         // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
         this.newItem = <Item>{};
         this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
-                this.visible = false;
-
         this.loadItems(); // Or add it to the array directly
       });
     } else {
-      if (this.items.length === 5) {
-        this.openMsgModal(
-          'error',
-          'Não é possível inserir mais que 10 itens',
-          '...'
-        );
+      if (this.items.length % 5 == 0) {
+        AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
+          // Subscribe prepared interstitial
+        });
+
+        const options: AdOptions = {
+          adId: 'ca-app-pub-6905686321259168/5330423192',
+          isTesting: true
+          // npa: true
+        };
+        await AdMob.prepareInterstitial(options);
+        await AdMob.showInterstitial();
+      }
+      if (
+        data === undefined ||
+        afazer === undefined ||
+        tipoAtividade === undefined||
+         hora === undefined
+
+      ) {
+        this.openMsgModal('error', 'Insira corretamente os dados', '...');
       } else {
-        if (
-          this.newItem.nomeDocumento === undefined ||
-          this.newItem.value === undefined ||
-          this.newItem.nome === undefined
-        ) {
-          this.openMsgModal('error', 'Insira corretamente os dados', '...');
-        } else {
-          this.storageService.addItem(this.newItem).then((item) => {
-            // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-            this.newItem = <Item>{};
-            this.showToast('DOCUMENTO ADICIONADO COM SUCESSO!');
-            this.scheduleNotification(data);
+this.visible = false;
+        this.storageService.addItem(this.newItem).then((item) => {
+          // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+          this.newItem = <Item>{};
+          this.showToast('NOTIFICAÇÃO ADICIONADA COM SUCESSO!');
 
-            this.loadItems(); // Or add it to the array directly
-            this.visible = false;
+          this.scheduleNotification(
+            date,
+            afazer,
+            tipoAtividade,
+            semanalmente,
+            hora
+          );
 
-          });
-        }
+          this.loadItems(); // Or add it to the array directly
+        });
       }
     }
   }
@@ -155,13 +252,26 @@ export class HomePage implements OnInit {
       this.items = items;
     });
     this.storageService.getNotify().then((data) => {
-      console.log(data);
       this.notifyList = data;
+      if (data === null) {
+        this.openInformationDialog();
+      }
     });
   }
   alert(): void {
     this.openMsgModal('error', 'Infelizmente você não tem permissões', '...');
   }
+  openInformationDialog() {
+    const dialogRef = this.dialog.open(InformationDialog, {
+      width: '500px',
+      height: '80%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
       width: '250px',
@@ -169,25 +279,20 @@ export class HomePage implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result===null || result === undefined || result === ' '){
+      if (result === null || result === undefined || result === ' ') {
         return;
-      }else{
-              this.newNotify.nameNotify = result;
-              this.storageService
-                .addNotify('nameNotify', this.newNotify)
-                .then((item) => {
-                  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-                  this.newItem = <Item>{};
-                  this.showToast('TIPO DE LEMBRETE ADICIONADO COM SUCESSO!');
-                  this.loadItems(); // Or add it to the array directly
-                });
-
-
+      } else {
+        this.newNotify.nameNotify = result;
+        this.storageService
+          .addNotify('nameNotify', this.newNotify)
+          .then((item) => {
+            // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+            this.newItem = <Item>{};
+            this.showToast('TIPO DE LEMBRETE ADICIONADO COM SUCESSO!');
+            this.loadItems(); // Or add it to the array directly
+          });
       }
-
-
     });
-
   }
   // UPDATE
   updateItem(item: Item) {
@@ -260,36 +365,60 @@ export class HomePage implements OnInit {
     });*/
   }
 
-  scheduleNotification(data) {
-    this.instantNotify();
-    // this.localNotifications.schedule({
-    //   id: 1,
-    //   title: 'Attention',
-    //   text: 'Simons Notification',
-    //   data: { mydata: 'My hidden message this is' },
-    //   trigger: { in: 5, unit: ELocalNotificationTriggerUnit.SECOND },
-    //   foreground: true, // Show the notification while app is open
-    // });
-    // Works as well!
-     const date = new Date(data);
-     console.log(new Date(date));
-     date.setHours(12, 0, 0); // Set hours, minutes and seconds
+  scheduleNotification(data, afazer, tipoAtividade, semanalmente, hora) {
+    if (semanalmente) {
+      this.onlyWeeklyHourNotify(data, afazer, tipoAtividade);
+    } else {
+      this.instantNotify(data, afazer, tipoAtividade);
+      // this.diaryHourNotify(data, afazer, tipoAtividade);
+      this.sevenHourNotify(data, afazer, tipoAtividade);
+      // this.midDayNotify(data, afazer, tipoAtividade);
+      this.atHourNotify(data, afazer, tipoAtividade, hora);
+    }
+  }
+  onlyWeeklyHourNotify(data, afazer, tipoAtividade) {}
 
-     console.log(new Date(date));
+  // diaryHourNotify(data, afazer, tipoAtividade) {}
+
+  sevenHourNotify(data, afazer, tipoAtividade) {
+    const date = new Date(data);
+    date.setHours(7, 0, 0);
+    console.log(new Date(date));
     this.localNotifications.schedule({
       id: 2,
-      title: 'Seu Documento está prestes a vencer',
-      text: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+      title: 'AVISO! SOBRE: ' + tipoAtividade,
+      text: 'FALTA POUCO TEMPO PARA: ' + afazer,
       data: { mydata: 'Confira logo!' },
       trigger: { at: new Date(date) },
     });
   }
-  instantNotify() {
+  // midDayNotify(data, afazer, tipoAtividade) {
+  //   const date = new Date(data);
+  //   date.setHours(12, 0, 0); // Set hours, minutes and seconds
+
+  //   console.log(new Date(date));
+  //   this.localNotifications.schedule({
+  //     id: 2,
+  //     title: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+  //     text: 'CHEGOU O MOMENTO PARA: ' + afazer,
+  //     data: { mydata: 'Confira logo!' },
+  //     trigger: { at: new Date(date) },
+  //   });
+  // }
+  atHourNotify(data, afazer, tipoAtividade, hora) {
+    this.localNotifications.schedule({
+      id: 2,
+      title: 'VOCÊ PEDIU, TE LEMBRAMOS!',
+      text: 'CHEGOU O MOMENTO PARA: ' + afazer,
+      data: { mydata: 'Confira logo!' },
+      trigger: { at: data },
+    });
+  }
+  instantNotify(data, afazer, tipoAtividade) {
     this.localNotifications.schedule({
       id: 1,
-      title: 'Iremos informar o vencimento do seu documento!',
-      text: 'Nós cuidaremos disto para você',
-      data: { mydata: 'Nós cuidaremos disto para você!' },
+      title: 'IREMOS TE INFORMAR SOBRE: ' + tipoAtividade + ' NÃO SE PREOCUPE!',
+      text: 'NÓS CUIDAREMOS DE TE LEMBRAR ISTO!',
       trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
     });
   }
@@ -313,6 +442,27 @@ export class HomePage implements OnInit {
   //     ],
   //   });
   // }
+
+  banner() {
+    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
+      // Subscribe Banner Event Listener
+    });
+
+    AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
+      // Subscribe Change Banner Size
+    });
+
+    const options: BannerAdOptions = {
+      adId: 'ca-app-pub-6905686321259168/3602267962',
+      //adId: 'ca-app-pub-3940256099942544/6300978111',
+      adSize: BannerAdSize.ADAPTIVE_BANNER,
+      position: BannerAdPosition.BOTTOM_CENTER,
+      margin: 0,
+      isTesting: true
+      // npa: true
+    };
+    AdMob.showBanner(options);
+  }
   openMsgModal(type, title, text): void {
     Swal.fire({
       heightAuto: false,
@@ -321,29 +471,10 @@ export class HomePage implements OnInit {
       icon: type,
     });
   }
-
-  banner() {
-      AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
-        // Subscribe Banner Event Listener
-      });
-  
-      AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
-        // Subscribe Change Banner Size
-      });
-  
-      const options: BannerAdOptions = {
-        adId: 'ca-app-pub-6905686321259168/3602267962',
-        //adId: 'ca-app-pub-3940256099942544/6300978111',
-        adSize: BannerAdSize.ADAPTIVE_BANNER,
-        position: BannerAdPosition.BOTTOM_CENTER,
-        margin: 0,
-        isTesting: true
-        // npa: true
-      };
-      AdMob.showBanner(options);
-  }
-
 }
+
+;
+
 @Component({
   selector: 'dialog-content-example-dialog',
   templateUrl: './modal/dialog-content-example-dialog.html',
@@ -352,5 +483,15 @@ export class DialogContentExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogContentExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
+  ) { }
+}
+@Component({
+  selector: 'information-dialog',
+  templateUrl: './modal/information-dialog.html',
+})
+export class InformationDialog {
+  constructor(
+    public dialogRef: MatDialogRef<InformationDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) { }
 }
