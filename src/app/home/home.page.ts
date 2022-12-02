@@ -12,7 +12,17 @@ import {
 } from '@ionic-native/local-notifications/ngx';
 
 // eslint-disable-next-line max-len
-import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize, AdOptions, AdLoadInfo, InterstitialAdPluginEvents } from '@capacitor-community/admob';
+import {
+  AdMob,
+  BannerAdOptions,
+  BannerAdSize,
+  BannerAdPosition,
+  BannerAdPluginEvents,
+  AdMobBannerSize,
+  AdOptions,
+  AdLoadInfo,
+  InterstitialAdPluginEvents,
+} from '@capacitor-community/admob';
 
 import {
   AlertController,
@@ -25,7 +35,11 @@ import {
 import { Item, StorageService } from '../shared/services/storage.service';
 import { Storage } from '@ionic/storage';
 import { CustomModalPage } from '../shared/custom-modal/custom-modal.page';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { DateAdapter } from '@angular/material/core';
 /*import {
   ActionPerformed,

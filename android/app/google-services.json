@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "442221569362",
+    "project_id": "me-lembre-35780",
+    "storage_bucket": "me-lembre-35780.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442221569362:android:a3047083ac075d9f5c468b",
+        "android_client_info": {
+          "package_name": "br.melembre.software2you"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442221569362-h144358qqj0h8jll2fh2vru9lqgni99h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6VWZWvWPsFpp98okciT6a0nsFuihEZRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442221569362-h144358qqj0h8jll2fh2vru9lqgni99h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
