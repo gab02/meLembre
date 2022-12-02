@@ -3,7 +3,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-toolbar class="new-background-color">
-    <ion-title>
+    <ion-title style="font-family: blackFont;">
       ME LEMBRE! </ion-title>
   </ion-toolbar>
   <!-- Documento Inserido -->
@@ -24,7 +24,7 @@
 </mat-form-field>
       </ion-col>
       <ion-col>
-        <ion-fab (click)="openDialog()">
+        <ion-fab  (click)="openDialog()">
           <ion-fab-button size="small">
             <ion-icon name="add"></ion-icon>
           </ion-fab-button>
@@ -36,7 +36,7 @@
       <ion-col size=" 12">
         <mat-form-field style="width: 100%;">
           <mat-label>A fazer:</mat-label>
-          <input [(ngModel)]="newItem.nome" matInput required>
+          <input [(ngModel)]="newItem.nome" matInput >
         </mat-form-field>
       </ion-col>
     </ion-row>
@@ -55,7 +55,7 @@
       <ion-col size="12">
     <mat-form-field style="width: 100%;">
       <mat-label>Selecione a data</mat-label>
-      <input matInput [(ngModel)]="newItem.value"  [min]="minDate" readonly="true" [matDatepicker]="picker" required>
+      <input matInput [(ngModel)]="newItem.value"  [min]="minDate" readonly="true" [matDatepicker]="picker" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker showSeconds stepHour stepMinute  touchUi #picker></mat-datepicker>
     </mat-form-field>
@@ -69,7 +69,7 @@
       <mat-form-field style="width: 100%;">
         <mat-label>Qual horário?</mat-label>
         <input matTimepicker #t1="matTimepicker" #time1="ngModel" [(ngModel)]="newItem.hour"  [minDate]="minValue" [maxDate]="maxValue"
-          id="timepicker-example-1" mode="24h"  placeholder="Please select time..." name="time-1" required>
+          id="timepicker-example-1" mode="24h"  placeholder="Please select time..." name="time-1" >
         <mat-icon matSuffix (click)="t1.showDialog()">access_time</mat-icon>
         <mat-error *ngIf="time1.touched && time1.invalid">Invalid Date</mat-error>
       </mat-form-field>
@@ -81,9 +81,13 @@
   </mat-card>
 <br>
     <div class="flex-container" *ngIf="visible" >
-      <button mat-raised-button
-        style="background-color: #3171e0; color: #fff; width: 80%; height: 50px; border-radius: 10px;"
-        (click)="addItem(newItem.value,newItem.nome,newItem.nomeDocumento,newItem.weekly,newItem.hour); clicado = true; ">ADICIONAR LEMBRETE</button>
+      <button mat-raised-button style=" background: linear-gradient(to right, #277ad8, #2459ec, #02388f);
+  color: #fff;
+  font-family: secondFont;
+  width: 80%;
+  height: 50px;
+  border-radius: 10px;"
+      (click)="addItem(newItem.value,newItem.nome,newItem.nomeDocumento,newItem.weekly,newItem.hour); clicado = true; ">ADICIONAR LEMBRETE</button>
     </div>
     <!-- <ion-button expand=" full" (click)="addItem()">Add Item!</ion-button> -->
 
@@ -93,21 +97,21 @@
         MEUS DOCUMENTOS
       </h3> -->
     <mat-accordion *ngFor="let item of items">
-      <mat-expansion-panel style="border-left: 6px solid #3171e0;">
+      <mat-expansion-panel style="border-left: 6px solid #063077;">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{item.nome}}
+            <h4 style="margin-top:10px ;">{{item.nome}}</h4>
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <mat-card style="padding: 1em ;border-right: 6px solid #3171e0;">
+        <mat-card style="padding: 1em ;border-right: 6px solid #0b347a;">
           <h3> <b>Tipo de lembrete:</b> {{item.nomeDocumento}}
           </h3>
           <h3> <b>Validade:</b> {{item.value | date:'dd/MM/yyyy'}}
           </h3>
           <br>
           <div class="flex-container">
-            <button mat-raised-button color="warn" style="width: 80%;" (click)="deleteItem(item)">
+            <button mat-raised-button style="width: 80%; background:linear-gradient(to right, #ed213a, #93291e); color: rgb(245, 245, 245)" (click)="deleteItem(item)">
               EXCLUIR</button>
           </div>
         </mat-card>

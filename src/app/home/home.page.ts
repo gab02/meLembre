@@ -1,3 +1,4 @@
+import { App } from '@capacitor/app';
 import { NotifyName } from './../shared/services/storage.service';
 import { DocumentoStorage } from './model/document';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
@@ -10,13 +11,18 @@ import {
   ILocalNotification,
 } from '@ionic-native/local-notifications/ngx';
 
-import { AdMob, BannerAdOptions, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize, AdOptions, AdLoadInfo, InterstitialAdPluginEvents } from '@capacitor-community/admob';
+// eslint-disable-next-line max-len
 import {
-  ActionPerformed,
-  PushNotificationSchema,
-  PushNotifications,
-  Token,
-} from '@capacitor/push-notifications';
+  AdMob,
+  BannerAdOptions,
+  BannerAdSize,
+  BannerAdPosition,
+  BannerAdPluginEvents,
+  AdMobBannerSize,
+  AdOptions,
+  AdLoadInfo,
+  InterstitialAdPluginEvents,
+} from '@capacitor-community/admob';
 
 import {
   AlertController,
@@ -29,15 +35,17 @@ import {
 import { Item, StorageService } from '../shared/services/storage.service';
 import { Storage } from '@ionic/storage';
 import { CustomModalPage } from '../shared/custom-modal/custom-modal.page';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { DateAdapter } from '@angular/material/core';
 /*import {
   ActionPerformed,
   LocalNotificationSchema,
 } from '@capacitor/local-notifications';*/
 import { DatePipe } from '@angular/common';
-import { App } from '@capacitor/app';
-import { async } from '@angular/core/testing';
 
 export interface DialogData {
   animal: string;
@@ -52,24 +60,22 @@ export class HomePage implements OnInit {
   items: Item[] = [];
   documentsList: any[] = [];
   notifyList: NotifyName[] = [];
-  clicado = false;
   visible = false;
   nameRemember;
   animal: string;
   name: string;
-  minValue: Date;
-  maxValue: Date;
+
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newItem: Item = <Item>{};
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   newNotify: NotifyName = <NotifyName>{};
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('mylist', { static: false }) mylist: IonList;
-  minDate = new Date();
+
   constructor(
     private alertCtrl: AlertController,
     private storageService: StorageService,
-    private platform: Platform,
+    private plt: Platform,
     public dialog: MatDialog,
     public loadingController: LoadingController,
     private dateAdapter: DateAdapter<any>,
@@ -77,7 +83,9 @@ export class HomePage implements OnInit {
     private localNotifications: LocalNotifications,
     private datePipe: DatePipe,
     private storage: Storage,
-    private toastController: ToastController
+    private toastController: ToastController,
+
+    private platform: Platform
   ) {
     App.addListener('backButton', ({ canGoBack }) => {
       console.log(canGoBack);
@@ -87,86 +95,28 @@ export class HomePage implements OnInit {
         this.present();
       }
     });
-    this.loadItems();
+    this.plt.ready().then(() => {
+      this.loadItems();
+    });
     AdMob.initialize({
       requestTrackingAuthorization: true,
+
       initializeForTesting: false,
     });
   }
   async ngOnInit(): Promise<void> {
-    // this.plt.backButton.subscribeWithPriority(10, () => {
-    //   App.exitApp();
-    // });
     this.dateAdapter.setLocale('pt');
     await this.storage.create();
+
     this.banner();
-
-    this.InitNotification();
   }
-
-  InitNotification() {
-        console.log('Initializing HomePage');
-
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-    PushNotifications.requestPermissions().then(result => {
-      if (result.receive === 'granted') {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        // Show some error
-      }
-    });
-
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration',
-      (token: Token) => {
-        //alert('Push registration success, token: ' + token.value);
-        console.log(token.value);
-      }
-    );
-
-    // Some issue with our setup and push will not work
-    PushNotifications.addListener('registrationError',
-      (error: any) => {
-        alert('Error on registration: ' + JSON.stringify(error));
-      }
-    );
-
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener('pushNotificationReceived',
-      (notification: PushNotificationSchema) => {
-        //this.presentAlert(notification.title, notification.body);
-        //alert('Push received: ' + JSON.stringify(notification));
-      }
-    );
-
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        //this.presentAlert(notification.title, notification.body);
-        //alert('Push action performed: ' + JSON.stringify(notification));
-      }
-    );
-  }
-
-  async present() {
-    Swal.fire({
-      heightAuto: false,
-      title: 'Você tem certeza?',
-      text: 'Você deseja mesmo sair da aplicação?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#00c1af',
-      cancelButtonText: 'Não',
-      cancelButtonColor: '#f1b080',
-      confirmButtonText: 'Sim, Tenho certeza!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        App.exitApp();
-      }
-    });
+  populateType(data) {
+    console.log(data);
+    if (data !== undefined) {
+      this.visible = true;
+    } else {
+      this.visible = false;
+    }
   }
   // CREATE
   async addItem(data, afazer, tipoAtividade, semanalmente, hora) {
@@ -199,14 +149,17 @@ export class HomePage implements OnInit {
         this.loadItems(); // Or add it to the array directly
       });
     } else {
-      if (this.items.length % 5 == 0) {
-        AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
-          // Subscribe prepared interstitial
-        });
+      if (this.items.length % 5 === 0) {
+        AdMob.addListener(
+          InterstitialAdPluginEvents.Loaded,
+          (info: AdLoadInfo) => {
+            // Subscribe prepared interstitial
+          }
+        );
 
         const options: AdOptions = {
           adId: 'ca-app-pub-6905686321259168/5330423192',
-          isTesting: true
+          isTesting: true,
           // npa: true
         };
         await AdMob.prepareInterstitial(options);
@@ -215,13 +168,12 @@ export class HomePage implements OnInit {
       if (
         data === undefined ||
         afazer === undefined ||
-        tipoAtividade === undefined||
-         hora === undefined
-
+        tipoAtividade === undefined ||
+        hora === undefined
       ) {
         this.openMsgModal('error', 'Insira corretamente os dados', '...');
       } else {
-this.visible = false;
+        this.visible = false;
         this.storageService.addItem(this.newItem).then((item) => {
           // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
           this.newItem = <Item>{};
@@ -240,6 +192,23 @@ this.visible = false;
       }
     }
   }
+  async present() {
+    Swal.fire({
+      heightAuto: false,
+      title: 'Você tem certeza?',
+      text: 'Você deseja mesmo sair da aplicação?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00c1af',
+      cancelButtonText: 'Não',
+      cancelButtonColor: '#f1b080',
+      confirmButtonText: 'Sim, Tenho certeza!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        App.exitApp();
+      }
+    });
+  }
   console() {
     console.log(this.items[0].nome);
   }
@@ -252,10 +221,8 @@ this.visible = false;
       this.items = items;
     });
     this.storageService.getNotify().then((data) => {
+      console.log(data);
       this.notifyList = data;
-      if (data === null) {
-        this.openInformationDialog();
-      }
     });
   }
   alert(): void {
@@ -264,7 +231,7 @@ this.visible = false;
   openInformationDialog() {
     const dialogRef = this.dialog.open(InformationDialog, {
       width: '500px',
-      height: '80%',
+      height: 'auto',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -331,7 +298,7 @@ this.visible = false;
   // DELETE
   deleteItem(item: Item) {
     this.storageService.deleteItem(item.id).then(() => {
-      this.showToast('DOCUMENTO REMOVIDO COM SUCESSO!');
+      this.showToast('LEMBRETE REMOVIDO COM SUCESSO!');
       this.doRefresh(event);
       this.loadItems(); // Or splice it from the array directly
     });
@@ -341,6 +308,7 @@ this.visible = false;
   async showToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
+      position: 'top',
       duration: 2000,
     });
     toast.present();
@@ -422,47 +390,6 @@ this.visible = false;
       trigger: { at: new Date(new Date().getTime() + 5 * 1000) },
     });
   }
-  // async scheduleAdvanced() {
-  //   await LocalNotifications.schedule({
-  //     notifications: [
-  //       {
-  //         title:
-  //           this.items.length[0].nome +
-  //           ' Seu documento irá vencer no dia ' +
-  //           this.items.length[0].value,
-  //         body: 'Venha conferir',
-  //         id: 2,
-  //         schedule: { at: new Date(Date.now() + 1000 * 3) },
-  //         sound: 'fanfare.wav',
-  //         smallIcon: 'ic_stat_ionic_logo', // Android only, overrides capacitor.config setting!
-  //         attachments: [
-  //           { id: 'face', url: 'res://public/assets/notif_image.jpg' },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  // }
-
-  banner() {
-    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
-      // Subscribe Banner Event Listener
-    });
-
-    AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
-      // Subscribe Change Banner Size
-    });
-
-    const options: BannerAdOptions = {
-      adId: 'ca-app-pub-6905686321259168/3602267962',
-      //adId: 'ca-app-pub-3940256099942544/6300978111',
-      adSize: BannerAdSize.ADAPTIVE_BANNER,
-      position: BannerAdPosition.BOTTOM_CENTER,
-      margin: 0,
-      isTesting: true
-      // npa: true
-    };
-    AdMob.showBanner(options);
-  }
   openMsgModal(type, title, text): void {
     Swal.fire({
       heightAuto: false,
@@ -471,10 +398,31 @@ this.visible = false;
       icon: type,
     });
   }
+
+  banner() {
+    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
+      // Subscribe Banner Event Listener
+    });
+
+    AdMob.addListener(
+      BannerAdPluginEvents.SizeChanged,
+      (size: AdMobBannerSize) => {
+        // Subscribe Change Banner Size
+      }
+    );
+
+    const options: BannerAdOptions = {
+      adId: 'ca-app-pub-6905686321259168/3602267962',
+      //adId: 'ca-app-pub-3940256099942544/6300978111',
+      adSize: BannerAdSize.ADAPTIVE_BANNER,
+      position: BannerAdPosition.BOTTOM_CENTER,
+      margin: 0,
+      isTesting: true,
+      // npa: true
+    };
+    AdMob.showBanner(options);
+  }
 }
-
-;
-
 @Component({
   selector: 'dialog-content-example-dialog',
   templateUrl: './modal/dialog-content-example-dialog.html',
@@ -483,7 +431,7 @@ export class DialogContentExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogContentExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) { }
+  ) {}
 }
 @Component({
   selector: 'information-dialog',
@@ -493,5 +441,5 @@ export class InformationDialog {
   constructor(
     public dialogRef: MatDialogRef<InformationDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) { }
+  ) {}
 }
