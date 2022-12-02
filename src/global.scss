@@ -33,7 +33,20 @@
   background-color: #3171e0;
   color: #fff;
 }
+@font-face {
+  font-family: blackFont;
+  src: url(./theme/Gotham-Font/Gotham-Black.otf);
+}
 
+@font-face {
+  font-family: singleFont;
+  src: url(./theme/Gotham-Font/Gotham-Light.otf);
+}
+
+@font-face {
+  font-family: secondFont;
+  src: url(./theme/Gotham-Font/GothamMedium.ttf);
+}
 .main-color {
   color: #3171e0;
 }
