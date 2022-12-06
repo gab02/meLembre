@@ -149,7 +149,7 @@ export class HomePage implements OnInit {
         this.loadItems(); // Or add it to the array directly
       });
     } else {
-      if (this.items.length % 5 === 0) {
+      if ((this.items.length % 5) === 0) {
         AdMob.addListener(
           InterstitialAdPluginEvents.Loaded,
           (info: AdLoadInfo) => {
@@ -158,8 +158,8 @@ export class HomePage implements OnInit {
         );
 
         const options: AdOptions = {
-          adId: 'ca-app-pub-6905686321259168/5330423192',
-          isTesting: true,
+          adId: 'ca-app-pub-6905686321259168/5330423192'//,
+          //isTesting: false,
           // npa: true
         };
         await AdMob.prepareInterstitial(options);
@@ -190,6 +190,7 @@ export class HomePage implements OnInit {
           this.loadItems(); // Or add it to the array directly
         });
       }
+      this.banner();
     }
   }
   async present() {
@@ -417,7 +418,7 @@ export class HomePage implements OnInit {
       adSize: BannerAdSize.ADAPTIVE_BANNER,
       position: BannerAdPosition.BOTTOM_CENTER,
       margin: 0,
-      isTesting: true,
+      isTesting: false,
       // npa: true
     };
     AdMob.showBanner(options);
